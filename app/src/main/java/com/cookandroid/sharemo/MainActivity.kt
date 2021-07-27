@@ -7,11 +7,13 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 
 class MainActivity : AppCompatActivity() {
 
     private var mFirebaseAuth : FirebaseAuth? = null //파이어베이스 인증
-    // lateinit var mDatabaseRef : DatabaseReference //실시간 데이터베이스
+    lateinit var mDatabaseRef : DatabaseReference //실시간 데이터베이스
     lateinit var edtEmail : EditText
     lateinit var edtPwd : EditText
 
@@ -21,7 +23,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         mFirebaseAuth = FirebaseAuth.getInstance()
-        //mDatabaseRef = FirebaseDatabase.getInstance().getReference()
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference()
 
         edtEmail = findViewById(R.id.edt_email)
         edtPwd = findViewById(R.id.edt_pwd)
