@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context=".ChangeInfoActivity">
+
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:orientation="vertical"
+        android:layout_margin="30dp">
+
+        <ImageView
+            android:id="@+id/iv_ChangePhoto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            app:srcCompat="@drawable/plusalphaphoto"
+            tools:layout_editor_absoluteX="134dp"
+            tools:layout_editor_absoluteY="44dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:textColor="@color/purple"
+            android:text="프로필 사진 바꾸기"/>
+    </LinearLayout>
+
+    <GridLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:columnCount="4"
+        android:rowCount="5"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp">
+        <TextView
+            android:layout_column="0"
+            android:layout_row="0"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="이름"
+            android:textSize="20dp"/>
+        <TextView
+            android:layout_column="0"
+            android:layout_row="1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="닉네임"
+            android:textSize="20dp"/>
+        <TextView
+            android:layout_column="0"
+            android:layout_row="2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="전화번호"
+            android:textSize="20dp"/>
+        <TextView
+            android:layout_column="0"
+            android:layout_row="3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="비밀번호"
+            android:textSize="20dp"/>
+        <TextView
+            android:layout_column="0"
+            android:layout_row="4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="비밀번호확인"
+            android:textSize="20dp"/>
+
+        <EditText
+            android:id="@+id/edt_Name"
+            android:layout_column="1"
+            android:layout_row="0"
+            android:layout_columnSpan="3"
+            android:layout_gravity="fill_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+        <EditText
+            android:id="@+id/edt_NickName"
+            android:layout_column="1"
+            android:layout_row="1"
+            android:layout_columnSpan="3"
+            android:layout_gravity="fill_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+        <EditText
+            android:id="@+id/edt_Phone"
+            android:layout_column="1"
+            android:layout_row="2"
+            android:layout_columnSpan="3"
+            android:layout_gravity="fill_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+        <EditText
+            android:id="@+id/edt_Password"
+            android:layout_column="1"
+            android:layout_row="3"
+            android:layout_columnSpan="3"
+            android:layout_gravity="fill_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+        <EditText
+            android:id="@+id/edt_PasswordRe"
+            android:layout_column="1"
+            android:layout_row="4"
+            android:layout_columnSpan="3"
+            android:layout_gravity="fill_horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+
+    </GridLayout>
+
+
+</LinearLayout>
