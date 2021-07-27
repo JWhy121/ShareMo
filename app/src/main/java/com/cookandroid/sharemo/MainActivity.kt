@@ -13,7 +13,7 @@ import com.google.firebase.database.FirebaseDatabase
 class MainActivity : AppCompatActivity() {
 
     private var mFirebaseAuth : FirebaseAuth? = null //파이어베이스 인증
-    lateinit var mDatabaseRef : DatabaseReference //실시간 데이터베이스
+    private lateinit var mDatabaseRef : DatabaseReference //실시간 데이터베이스
     lateinit var edtEmail : EditText
     lateinit var edtPwd : EditText
 
@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
             }else{
                 mFirebaseAuth!!.signInWithEmailAndPassword(edtEmail.text.toString(), edtPwd.text.toString())!!.addOnCompleteListener(this) {
                     if (it.isSuccessful) {
-                        var intent = Intent(this, NavigationActivity::class.java)
+                        var intent = Intent(this, WriteActivity::class.java)
                         startActivity(intent)
                     } else {
                         Toast.makeText(this, "아이디 혹은 비밀번호가 틀렸습니다", Toast.LENGTH_SHORT).show()

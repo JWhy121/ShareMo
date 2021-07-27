@@ -9,16 +9,22 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ShareMo">
+        <activity android:name=".NavigationActivity"></activity>
         <activity android:name=".ChangeInfoActivity"></activity>
-        <activity android:name=".MyPageActivity" />
-        <activity android:name=".NavigationActivity" />
+        <activity android:name=".TempActivity">
+
+        </activity>
+        <activity android:name=".MyPageActivity"></activity>
+        <activity android:name=".WriteActivity"></activity>
         <activity android:name=".RegisterActivity" />
         <activity android:name=".MainActivity">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
     </application>
 
