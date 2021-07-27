@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "679213058340",
+    "project_id": "sharemo-c49a1",
+    "storage_bucket": "sharemo-c49a1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:679213058340:android:749b443ef87c59ff9f0bb1",
+        "android_client_info": {
+          "package_name": "com.cookandroid.sharemo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "679213058340-c3heuht4h39bl8nlh0gni3aajmpcr26i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCkmj5HuQrdlqlXJPVh3m_j6l0DEhIV6HE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "679213058340-c3heuht4h39bl8nlh0gni3aajmpcr26i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
