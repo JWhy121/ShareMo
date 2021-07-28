@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
             }else{
                 mFirebaseAuth!!.signInWithEmailAndPassword(edtEmail.text.toString(), edtPwd.text.toString())!!.addOnCompleteListener(this) {
                     if (it.isSuccessful) {
-                        var intent = Intent(this, WriteActivity::class.java)
+                        var intent = Intent(this, NavigationActivity::class.java)
                         startActivity(intent)
                     } else {
                         Toast.makeText(this, "아이디 혹은 비밀번호가 틀렸습니다", Toast.LENGTH_SHORT).show()
