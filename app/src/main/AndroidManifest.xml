@@ -14,7 +14,6 @@
         <activity android:name=".WriteActivity" />
         <activity android:name=".NavigationActivity" />
         <activity android:name=".ChangeInfoActivity" />
-        <activity android:name=".MyPageActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".MainActivity">
 
