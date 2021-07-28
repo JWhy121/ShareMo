@@ -28,7 +28,7 @@
                 app:srcCompat="@drawable/plusalphaphoto" />
 
             <TextView
-                android:id="@+id/tv_Writing"
+                android:id="@+id/tv_ChatContent"
                 android:layout_width="200dp"
                 android:layout_height="60dp"
                 android:layout_marginStart="20dp"
@@ -52,7 +52,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/tv_Won"
+                android:id="@+id/tv_ChatPrice"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"

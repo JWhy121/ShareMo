@@ -38,11 +38,11 @@ class PostDataAdapter(val postDataList : ArrayList<PostData>) : RecyclerView.Ada
 
     class CustomViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
 
-        val image = itemView.findViewById<ImageView>(R.id.iv_image)
-        val content = itemView.findViewById<TextView>(R.id.tv_content)
-        val dong = itemView.findViewById<TextView>(R.id.tv_dong)
-        val nickname = itemView.findViewById<TextView>(R.id.tv_nickname)
-        val price = itemView.findViewById<TextView>(R.id.tv_price)
+        val image = itemView.findViewById<ImageView>(R.id.iv_Image)
+        val content = itemView.findViewById<TextView>(R.id.tv_Content)
+        val dong = itemView.findViewById<TextView>(R.id.tv_Dong)
+        val nickname = itemView.findViewById<TextView>(R.id.tv_Nickname)
+        val price = itemView.findViewById<TextView>(R.id.tv_Price)
     }
 
 

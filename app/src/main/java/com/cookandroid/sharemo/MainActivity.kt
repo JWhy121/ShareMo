@@ -25,10 +25,10 @@ class MainActivity : AppCompatActivity() {
         mFirebaseAuth = FirebaseAuth.getInstance()
         mDatabaseRef = FirebaseDatabase.getInstance().getReference()
 
-        edtEmail = findViewById(R.id.edt_email)
-        edtPwd = findViewById(R.id.edt_pwd)
+        edtEmail = findViewById(R.id.edt_Email)
+        edtPwd = findViewById(R.id.edt_Pwd)
 
-        var btnLogin : Button = findViewById(R.id.btn_login)
+        var btnLogin : Button = findViewById(R.id.btn_Login)
 
         btnLogin.setOnClickListener {
 
@@ -46,7 +46,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        var btnRegister : Button = findViewById(R.id.btn_register)
+        var btnRegister : Button = findViewById(R.id.btn_Register)
         btnRegister.setOnClickListener {
 
             val intent = Intent(this, RegisterActivity::class.java)

@@ -18,7 +18,7 @@ class WriteTempActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_write_temp)
 
-        rv_post = findViewById(R.id.rv_post)
+        rv_post = findViewById(R.id.rv_Post)
 
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("ShareMo")
 

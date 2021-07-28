@@ -19,7 +19,7 @@
         android:layout_margin="30dp">
 
         <ImageView
-            android:id="@+id/iv_ChangePhoto"
+            android:id="@+id/iv_InfoPhoto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -70,16 +70,9 @@
             android:layout_height="wrap_content"
             android:text="비밀번호"
             android:textSize="20dp"/>
-        <TextView
-            android:layout_column="0"
-            android:layout_row="4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="비밀번호확인"
-            android:textSize="20dp"/>
 
         <EditText
-            android:id="@+id/edt_Name"
+            android:id="@+id/edt_InfoName"
             android:layout_width="108dp"
             android:layout_height="wrap_content"
             android:layout_row="0"
@@ -88,7 +81,7 @@
             android:layout_gravity="fill_horizontal"
             android:layout_weight="1" />
         <EditText
-            android:id="@+id/edt_NickName"
+            android:id="@+id/edt_InfoNickname"
             android:layout_column="1"
             android:layout_row="1"
             android:layout_columnSpan="3"
@@ -98,7 +91,7 @@
             android:layout_weight="1"/>
 
         <EditText
-            android:id="@+id/edt_Password"
+            android:id="@+id/edt_InfoPwd"
             android:layout_column="1"
             android:layout_row="3"
             android:layout_columnSpan="3"
@@ -108,7 +101,7 @@
             android:layout_weight="1"/>
 
         <EditText
-            android:id="@+id/edt_Phone"
+            android:id="@+id/edt_InfoPhone"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_row="2"
@@ -116,16 +109,6 @@
             android:layout_columnSpan="3"
             android:layout_gravity="fill_horizontal"
             android:layout_weight="1" />
-
-        <EditText
-            android:id="@+id/edt_PasswordRe"
-            android:layout_column="1"
-            android:layout_row="4"
-            android:layout_columnSpan="3"
-            android:layout_gravity="fill_horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"/>
 
 
     </GridLayout>
