@@ -1,3 +1,3 @@
 package com.cookandroid.sharemo
 
-data class PostData(val user_uid: String? = null, val description: String? = null, val price: String? = null, val website: String? = null){}
+class PostData(val image : Int, val uid : String,val nickname : String, val content : String, val price : Int, val dong : String, val website : String)

@@ -9,13 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ShareMo">
-        <activity android:name=".NavigationActivity"></activity>
-        <activity android:name=".ChangeInfoActivity"></activity>
-        <activity android:name=".TempActivity">
-
+        <activity android:name=".WriteTempActivity">
         </activity>
-        <activity android:name=".MyPageActivity"></activity>
-        <activity android:name=".WriteActivity"></activity>
+        <activity android:name=".WriteActivity" />
+        <activity android:name=".NavigationActivity" />
+        <activity android:name=".ChangeInfoActivity" />
+        <activity android:name=".MyPageActivity" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".MainActivity">
 
