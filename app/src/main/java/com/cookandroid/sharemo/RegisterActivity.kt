@@ -32,7 +32,6 @@ class RegisterActivity : AppCompatActivity() {
         mFirebaseAuth = FirebaseAuth.getInstance()
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("ShareMo")
 
-
         edt_email = findViewById(R.id.edt_email)
         edt_pwd = findViewById(R.id.edt_pwd)
         edt_name = findViewById(R.id.edt_name)
