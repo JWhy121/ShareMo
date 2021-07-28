@@ -21,7 +21,7 @@
                 android:layout_height="100dp">
 
                 <ImageView
-                    android:id="@+id/iv_Userimage"
+                    android:id="@+id/iv_UserImage"
                     android:layout_width="60dp"
                     android:layout_height="60dp"
                     android:layout_marginStart="20dp"
@@ -33,26 +33,26 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/tv_Username"
+                    android:id="@+id/tv_UserName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="20dp"
                     android:text="시원"
                     android:textSize="20dp"
-                    app:layout_constraintStart_toEndOf="@+id/iv_Userimage"
+                    app:layout_constraintStart_toEndOf="@+id/iv_UserImage"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:ignore="MissingConstraints" />
 
                 <TextView
-                    android:id="@+id/tv_Writing"
+                    android:id="@+id/tv_ChatContent"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
                     android:layout_marginBottom="20dp"
                     android:text="깨끗한 나라 물티슈 40매"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_Username"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_UserName"
                     tools:layout_editor_absoluteX="101dp"
                     tools:ignore="MissingConstraints" />
 
@@ -63,7 +63,7 @@
                     android:layout_marginStart="20dp"
                     android:layout_marginTop="25dp"
                     android:text="공릉동"
-                    app:layout_constraintStart_toEndOf="@+id/tv_Username"
+                    app:layout_constraintStart_toEndOf="@+id/tv_UserName"
                     app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>

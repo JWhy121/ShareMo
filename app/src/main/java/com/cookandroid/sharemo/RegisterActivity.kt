@@ -8,7 +8,6 @@ import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import java.util.*
-import kotlin.collections.HashMap
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -32,13 +31,13 @@ class RegisterActivity : AppCompatActivity() {
         mFirebaseAuth = FirebaseAuth.getInstance()
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("ShareMo")
 
-        edt_email = findViewById(R.id.edt_email)
-        edt_pwd = findViewById(R.id.edt_pwd)
-        edt_name = findViewById(R.id.edt_name)
-        edt_phone = findViewById(R.id.edt_phone)
-        edt_nickname = findViewById(R.id.edt_nickname)
+        edt_email = findViewById(R.id.edt_Email)
+        edt_pwd = findViewById(R.id.edt_Pwd)
+        edt_name = findViewById(R.id.edt_Name)
+        edt_phone = findViewById(R.id.edt_Phone)
+        edt_nickname = findViewById(R.id.edt_Nickname)
 
-        btn_register = findViewById(R.id.btn_register)
+        btn_register = findViewById(R.id.btn_Register)
 
         btn_register.setOnClickListener {
             //회원가입 처리 시작

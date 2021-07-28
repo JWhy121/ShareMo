@@ -7,7 +7,7 @@
     tools:context=".MainActivity">
 
     <EditText
-        android:id="@+id/edt_email"
+        android:id="@+id/edt_Email"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="300dp"
@@ -15,41 +15,41 @@
         android:ems="10"
         android:hint="이메일 입력"
         android:inputType="textEmailAddress"
-        app:layout_constraintBottom_toTopOf="@+id/edt_pwd"
+        app:layout_constraintBottom_toTopOf="@+id/edt_Pwd"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/edt_pwd"
+        android:id="@+id/edt_Pwd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:ems="10"
         android:hint="비밀번호 입력"
         android:inputType="textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/btn_login"
+        app:layout_constraintBottom_toTopOf="@+id/btn_Login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_email" />
+        app:layout_constraintTop_toBottomOf="@+id/edt_Email" />
 
     <Button
-        android:id="@+id/btn_login"
+        android:id="@+id/btn_Login"
         android:layout_width="210dp"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
         android:text="로그인"
         android:textSize="15dp"
-        app:layout_constraintBottom_toTopOf="@+id/btn_register"
+        app:layout_constraintBottom_toTopOf="@+id/btn_Register"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/edt_pwd" />
+        app:layout_constraintTop_toBottomOf="@+id/edt_Pwd" />
 
     <Button
-        android:id="@+id/btn_register"
+        android:id="@+id/btn_Register"
         android:layout_width="210dp"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
@@ -60,13 +60,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_login" />
+        app:layout_constraintTop_toBottomOf="@+id/btn_Login" />
 
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="250dp"
         android:layout_height="217dp"
-        app:layout_constraintBottom_toTopOf="@+id/edt_email"
+        app:layout_constraintBottom_toTopOf="@+id/edt_Email"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"

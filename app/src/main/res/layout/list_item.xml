@@ -20,7 +20,7 @@
         app:layout_constraintVertical_bias="0.0">
 
         <ImageView
-            android:id="@+id/iv_image"
+            android:id="@+id/iv_Image"
             android:layout_width="60dp"
             android:layout_height="60dp"
             android:layout_marginTop="4dp"
@@ -30,7 +30,7 @@
             app:srcCompat="@drawable/user" />
 
         <TextView
-            android:id="@+id/tv_dong"
+            android:id="@+id/tv_Dong"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
@@ -40,17 +40,17 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/tv_content"
+            android:id="@+id/tv_Content"
             android:layout_width="312dp"
             android:layout_height="51dp"
             android:layout_marginStart="4dp"
             android:layout_marginTop="4dp"
             android:text="내용"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_dong" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_Dong" />
 
         <TextView
-            android:id="@+id/tv_nickname"
+            android:id="@+id/tv_Nickname"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
@@ -58,17 +58,17 @@
             android:textSize="10sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_content" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_Content" />
 
         <TextView
-            android:id="@+id/tv_price"
+            android:id="@+id/tv_Price"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
             android:text="가격"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/iv_image"
-            app:layout_constraintTop_toBottomOf="@+id/iv_image" />
+            app:layout_constraintEnd_toEndOf="@+id/iv_Image"
+            app:layout_constraintTop_toBottomOf="@+id/iv_Image" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

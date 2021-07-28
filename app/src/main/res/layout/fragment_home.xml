@@ -12,7 +12,7 @@
         android:layout_height="match_parent">
 
         <ImageView
-            android:id="@+id/btn_Car"
+            android:id="@+id/imgBtn_Car"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_marginStart="40dp"
@@ -23,7 +23,7 @@
             app:layout_constraintStart_toStartOf="parent" />
 
         <ImageView
-            android:id="@+id/btn_Glocery"
+            android:id="@+id/ImgBtn_Glocery"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_marginStart="40dp"
@@ -34,7 +34,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/btn_Talent"
+            android:id="@+id/ImgBtn_Talent"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_marginTop="50dp"
@@ -45,7 +45,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <ImageView
-            android:id="@+id/btn_Etc"
+            android:id="@+id/imgBtn_Etc"
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:layout_marginEnd="40dp"
@@ -63,7 +63,7 @@
             android:layout_marginTop="30dp"
             android:text="생필품 / 음식"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_Glocery" />
+            app:layout_constraintTop_toBottomOf="@+id/ImgBtn_Glocery" />
 
         <TextView
             android:id="@+id/tv_Talent"
@@ -73,7 +73,7 @@
             android:layout_marginEnd="105dp"
             android:text="재능"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_Talent" />
+            app:layout_constraintTop_toBottomOf="@+id/ImgBtn_Talent" />
 
         <TextView
             android:id="@+id/tv_Car"
@@ -83,7 +83,7 @@
             android:layout_marginTop="30dp"
             android:text="교통수단"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_Car" />
+            app:layout_constraintTop_toBottomOf="@+id/imgBtn_Car" />
 
         <TextView
             android:id="@+id/tv_Etc"
@@ -93,7 +93,7 @@
             android:layout_marginEnd="105dp"
             android:text="기타"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_Etc" />
+            app:layout_constraintTop_toBottomOf="@+id/imgBtn_Etc" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

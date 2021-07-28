@@ -6,7 +6,6 @@ import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.gms.common.config.GservicesValue.value
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 
@@ -32,14 +31,14 @@ class WriteActivity : AppCompatActivity() {
         mFirebaseAuth = FirebaseAuth.getInstance()
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("ShareMo")
 
-        btn_close = findViewById(R.id.btn_close)
-        btn_upload = findViewById(R.id.btn_upload)
+        btn_close = findViewById(R.id.btn_Close)
+        btn_upload = findViewById(R.id.btn_Upload)
 
-        iv_contentImage = findViewById(R.id.iv_contentImage)
+        iv_contentImage = findViewById(R.id.iv_ContentImage)
 
-        edt_content = findViewById(R.id.edt_content)
-        edt_price = findViewById(R.id.edt_price)
-        edt_website = findViewById(R.id.edt_website)
+        edt_content = findViewById(R.id.edt_Content)
+        edt_price = findViewById(R.id.edt_Price)
+        edt_website = findViewById(R.id.edt_Website)
 
         btn_close.setOnClickListener {
             onBackPressed()
