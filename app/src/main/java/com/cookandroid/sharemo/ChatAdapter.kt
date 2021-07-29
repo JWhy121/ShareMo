@@ -13,8 +13,6 @@ class ChatAdapter(val postDataList : ArrayList<PostData>) : RecyclerView.Adapter
 
     private lateinit var mDataset : List<ChatData>
 
-
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatAdapter.CustomViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)
 
@@ -48,8 +46,5 @@ class ChatAdapter(val postDataList : ArrayList<PostData>) : RecyclerView.Adapter
             return null!!
         }
     }
-
-
-
 
 }

@@ -26,7 +26,6 @@ class WriteTempActivity : AppCompatActivity() {
             override fun onDataChange(snapshot: DataSnapshot) {
                 Log.d("태그", "${snapshot.value}")
             }
-
             override fun onCancelled(error: DatabaseError) {
 
             }

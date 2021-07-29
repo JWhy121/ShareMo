@@ -10,7 +10,6 @@ import androidx.recyclerview.widget.RecyclerView
 
 class PostDataAdapter(val postDataList : ArrayList<PostData>) : RecyclerView.Adapter<PostDataAdapter.CustomViewHolder>(){
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostDataAdapter.CustomViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)
         return CustomViewHolder(view).apply {
@@ -20,10 +19,7 @@ class PostDataAdapter(val postDataList : ArrayList<PostData>) : RecyclerView.Ada
                 Toast.makeText(parent.context, "이름 : ${postData.content} 동네 : ${postData.dong}", Toast.LENGTH_SHORT).show()
             }
         }
-
-
     }
-
     override fun onBindViewHolder(holder: PostDataAdapter.CustomViewHolder, position: Int) {
         holder.image.setImageResource(postDataList.get(position).image)
         holder.content.text = postDataList.get(position).content
