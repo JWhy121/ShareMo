@@ -55,19 +55,9 @@ class ProfileFragment : Fragment(){
 
             val intent = Intent(getActivity(), ChangeInfoActivity::class.java)
             startActivity(intent)
+            //다른 액티비티에서 전환할 때
+            //activity?.finish()
         }
-
-        //fragment 내 intent 사용 화면전환
-        /*btn_changeInfo.setOnClickListener(object :View.OnClickListener{
-            override fun onClick(v: View?) {
-                val intent = Intent(context, ChangeInfoActivity::class.java)
-                startActivity(intent)
-                // 다른 액티비티에서 전환할 때
-                //activity?.finish()
-            }
-        })
-
-         */
         return view
     }
 

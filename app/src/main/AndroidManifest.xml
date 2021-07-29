@@ -9,24 +9,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ShareMo">
-        <activity android:name=".BottomNavActivity"></activity>
-        <activity android:name=".WriteTempActivity" />
-        <activity android:name=".WriteActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            />
-        <activity android:name=".ChangeInfoActivity" />
-        <activity android:name=".RegisterActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            />
-        <activity android:name=".MainActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"
-            >
-
+        <activity android:name=".StartActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".BottomNavActivity" />
+        <activity android:name=".WriteTempActivity" />
+        <activity
+            android:name=".WriteActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity android:name=".ChangeInfoActivity" />
+        <activity
+            android:name=".RegisterActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+        <activity
+            android:name=".MainActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
         </activity>
     </application>
