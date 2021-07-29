@@ -1,14 +1,19 @@
 package com.cookandroid.sharemo
 
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.ImageView
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 
 class HomeFragment : Fragment() {
+
 
     companion object {
         const val TAG : String = "로그"
@@ -19,10 +24,12 @@ class HomeFragment : Fragment() {
 
     }
 
+
     // 메모리에 올라갔을때
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.d(TAG, "HomeFragment - onCreate() called")
+
     }
 
     // 프레그먼트를 안고 있는 액티비티에 붙었을 때
@@ -44,8 +51,17 @@ class HomeFragment : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_home, container, false)
 
-        return view
-    }
+        var btn_write : Button = view.findViewById(R.id.btn_write)
 
+        btn_write.setOnClickListener {
+
+            val intent = Intent(getActivity(), WriteActivity::class.java)
+            startActivity(intent)
+        }
+
+
+        return view
+
+    }
 
 }
