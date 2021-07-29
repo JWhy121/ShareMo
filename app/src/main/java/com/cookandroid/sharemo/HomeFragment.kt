@@ -51,15 +51,6 @@ class HomeFragment : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_home, container, false)
 
-        var btn_write : Button = view.findViewById(R.id.btn_write)
-
-        btn_write.setOnClickListener {
-
-            val intent = Intent(getActivity(), WriteActivity::class.java)
-            startActivity(intent)
-        }
-
-
         return view
 
     }

@@ -56,5 +56,16 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent" />
 
+        <Button
+            android:id="@+id/btn_write"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="40dp"
+            android:text="글쓰기"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imgBtn_Etc2"
+            app:layout_constraintVertical_bias="0.281" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
