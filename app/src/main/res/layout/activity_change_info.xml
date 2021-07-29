@@ -113,5 +113,12 @@
 
     </GridLayout>
 
+    <Button
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="50dp"
+        android:text="변경 완료"
+        android:layout_gravity="center_horizontal"/>
+
 
 </LinearLayout>
