@@ -2,6 +2,7 @@ package com.cookandroid.sharemo
 
 import android.content.Context
 import android.view.LayoutInflater
+import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
@@ -19,7 +20,6 @@ class PostDataAdapter() : RecyclerView.Adapter<PostDataAdapter.CustomViewHolder>
         this.postDataList = postDataList
         this.context = context
     }
-
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PostDataAdapter.CustomViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)
@@ -59,5 +59,9 @@ class PostDataAdapter() : RecyclerView.Adapter<PostDataAdapter.CustomViewHolder>
         //val nickname = itemView.findViewById<TextView>(R.id.tv_Nickname)
         val price = itemView.findViewById<TextView>(R.id.tv_Price)
     }
+
+
+
+
 
 }
