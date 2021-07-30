@@ -51,6 +51,14 @@ class HomeFragment : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_home, container, false)
 
+        var imgBtn_glocery : ImageView = view.findViewById(R.id.imgBtn_Glocery)
+
+        imgBtn_glocery.setOnClickListener {
+
+            val intent = Intent(getActivity(), WriteTempActivity::class.java)
+            startActivity(intent)
+        }
+
         return view
 
     }

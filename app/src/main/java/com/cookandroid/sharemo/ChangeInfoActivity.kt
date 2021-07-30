@@ -19,15 +19,6 @@ class ChangeInfoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_change_info)
 
-        var btn_back : Button = findViewById(R.id.btn_Back)
-
-        btn_back.setOnClickListener {
-            var intent = Intent(this, BottomNavActivity::class.java)
-            //profileFragment = ProfileFragment.newInstance()
-            //supportFragmentManager.beginTransaction().replace(R.id.fragments_frame, profileFragment).commit()
-            startActivity(intent)
-        }
-
     }
 
 

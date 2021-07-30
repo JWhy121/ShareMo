@@ -59,6 +59,7 @@ class WriteActivity : AppCompatActivity() {
             Toast.makeText(this, "등록완료", Toast.LENGTH_SHORT).show()
             var intent = Intent(this, WriteTempActivity::class.java)
             startActivity(intent)
+            finish()
         }
 
 
