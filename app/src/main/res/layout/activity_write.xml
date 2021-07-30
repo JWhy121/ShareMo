@@ -48,7 +48,7 @@
         android:ems="10"
         android:gravity="right"
         android:hint="가격"
-        android:inputType="textPersonName"
+        android:inputType="number"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iv_ContentImage" />
 
@@ -56,7 +56,7 @@
         android:id="@+id/iv_ContentImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.042"
         app:layout_constraintStart_toStartOf="parent"
@@ -79,12 +79,13 @@
         android:id="@+id/edt_Website"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="16dp"
         android:ems="10"
-        android:hint="사이트"
+        android:hint="http://"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.059"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edt_Price" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

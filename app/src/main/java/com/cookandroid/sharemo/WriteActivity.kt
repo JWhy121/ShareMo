@@ -1,5 +1,6 @@
 package com.cookandroid.sharemo
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -45,19 +46,19 @@ class WriteActivity : AppCompatActivity() {
         }
 
         btn_upload.setOnClickListener {
-            var str_uid : String = mFirebaseAuth!!.currentUser!!.uid
             var str_content : String = edt_content.text.toString()
-            var str_price : Int = edt_price.text.toString().toInt()
+            var str_price = edt_price.text.toString()
             var str_website : String = edt_website.text.toString()
 
-            val Post : PostData = PostData(R.drawable.user, str_uid, "닉네임", str_content, str_price, "공릉동", str_website)
+            val Post = PostData(str_content, str_price, "공릉동")
 
             //mDatabaseRef.child("Posts").setValue(Post)
 
             mDatabaseRef.ref.child("PostData").push().setValue(Post);
 
             Toast.makeText(this, "등록완료", Toast.LENGTH_SHORT).show()
-            finish()
+            var intent = Intent(this, WriteTempActivity::class.java)
+            startActivity(intent)
         }
 
 
