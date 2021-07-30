@@ -51,14 +51,13 @@ class HomeFragment : Fragment() {
 
         val view = inflater.inflate(R.layout.fragment_home, container, false)
 
-        var btn_write : Button = view.findViewById(R.id.btn_write)
+        var imgBtn_glocery : ImageView = view.findViewById(R.id.imgBtn_Glocery)
 
-        btn_write.setOnClickListener {
+        imgBtn_glocery.setOnClickListener {
 
-            val intent = Intent(getActivity(), WriteActivity::class.java)
+            val intent = Intent(getActivity(), WriteTempActivity::class.java)
             startActivity(intent)
         }
-
 
         return view
 

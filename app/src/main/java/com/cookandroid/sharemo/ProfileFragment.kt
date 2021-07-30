@@ -11,6 +11,7 @@ import android.widget.Button
 import androidx.annotation.Nullable
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.google.firebase.auth.FirebaseAuth
 
 class ProfileFragment : Fragment(){
 
@@ -50,7 +51,14 @@ class ProfileFragment : Fragment(){
         //fragment내 findViewById 사용
         val view = inflater.inflate(R.layout.fragment_profile, container, false)
         var btn_changeInfo : Button = view.findViewById(R.id.btn_ChangeInfo)
+        var btn_logout : Button = view.findViewById(R.id.btn_Logout)
+        var btn_drop : Button = view.findViewById(R.id.btn_Drop)
 
+        var mFirebaseAuth : FirebaseAuth? = null //파이어베이스 인증
+
+        mFirebaseAuth = FirebaseAuth.getInstance()
+
+        //정보 수정 액티비티로 넘어가는 버튼
         btn_changeInfo.setOnClickListener {
 
             val intent = Intent(getActivity(), ChangeInfoActivity::class.java)
@@ -58,6 +66,23 @@ class ProfileFragment : Fragment(){
             //다른 액티비티에서 전환할 때
             //activity?.finish()
         }
+
+        //로그아웃 버튼
+        btn_logout.setOnClickListener {
+
+
+
+        }
+
+        //탈퇴 버튼
+        btn_drop.setOnClickListener {
+
+            mFirebaseAuth!!.currentUser!!.delete()
+            val intent = Intent(getActivity(), MainActivity::class.java)
+            startActivity(intent)
+
+        }
+
         return view
     }
 

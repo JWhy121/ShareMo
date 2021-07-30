@@ -12,7 +12,6 @@
         android:icon="@drawable/bottom_chat"/>
 
 
-
     <item
         android:id="@+id/menu_Profile"
         android:title="내정보"
