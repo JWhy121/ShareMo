@@ -68,7 +68,7 @@ class RegisterActivity : AppCompatActivity() {
                     if(it.isSuccessful){
                         val mFirebaseUser : FirebaseUser? = mFirebaseAuth?.currentUser
 
-                        val User = User(str_email, str_pwd, str_name, str_phoneNum, str_nickname)
+                        val User = User(mFirebaseUser!!.uid, str_email, str_pwd, str_name, str_phoneNum, str_nickname)
 
                         mDatabaseRef.child("UserAccount").child(mFirebaseUser!!.uid).setValue(User)
 

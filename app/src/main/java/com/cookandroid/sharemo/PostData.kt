@@ -6,5 +6,5 @@ data class PostData(
         val nickname : String? = null,
         val price : String? = null,
         val dong : String? = null,
-        val website : String? = null
+        val website : String? = null,
 )

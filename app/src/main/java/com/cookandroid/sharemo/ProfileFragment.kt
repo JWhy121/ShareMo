@@ -70,8 +70,9 @@ class ProfileFragment : Fragment(){
         //로그아웃 버튼
         btn_logout.setOnClickListener {
 
-
-
+            mFirebaseAuth!!.signOut()
+            val intent = Intent(getActivity(), MainActivity::class.java)
+            startActivity(intent)
         }
 
         //탈퇴 버튼
@@ -80,7 +81,6 @@ class ProfileFragment : Fragment(){
             mFirebaseAuth!!.currentUser!!.delete()
             val intent = Intent(getActivity(), MainActivity::class.java)
             startActivity(intent)
-
         }
 
         return view
