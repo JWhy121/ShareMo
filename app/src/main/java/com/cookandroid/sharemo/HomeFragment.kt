@@ -11,7 +11,6 @@ import android.widget.Button
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import androidx.fragment.app.FragmentTransaction;
 
 class HomeFragment : Fragment() {
 
@@ -58,7 +57,6 @@ class HomeFragment : Fragment() {
 
             val intent = Intent(getActivity(), WriteTempActivity::class.java)
             startActivity(intent)
-
         }
 
         return view
