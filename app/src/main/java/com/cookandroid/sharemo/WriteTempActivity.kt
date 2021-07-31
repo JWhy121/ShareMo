@@ -38,7 +38,7 @@ class WriteTempActivity : AppCompatActivity() {
         rv_post = findViewById(R.id.rv_Post) //아이디 연결
         imgBtn_eidt = findViewById(R.id.imgBtn_Edit)
 
-        mSearchText = findViewById(R.id.edt_SerchText)
+        mSearchText = findViewById(R.id.edt_SearchText)
         rv_post.setHasFixedSize(true) //리사이클러뷰 성능 강화
         layoutManager = LinearLayoutManager(this)
         rv_post.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
@@ -48,7 +48,7 @@ class WriteTempActivity : AppCompatActivity() {
         database = FirebaseDatabase.getInstance() //파이어베이스 데이터베이스 연동
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("ShareMo")
 
-        mDatabaseRef.child("PostData").addValueEventListener(object : ValueEventListener {
+        mDatabaseRef.child("PostData").orderByKey().addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 //파이어베이스의 데이터를 가져옴
                 arrayList.clear()
@@ -70,6 +70,7 @@ class WriteTempActivity : AppCompatActivity() {
 
         adapter = PostDataAdapter(arrayList, this)
         rv_post.setAdapter(adapter)
+
 
         //글쓰기 버튼에 클릭 리스너 연결
         imgBtn_Edit.setOnClickListener {
