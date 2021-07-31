@@ -3,6 +3,7 @@ package com.cookandroid.sharemo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.*
+import com.cookandroid.sharemo.databinding.ActivityMainBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.DatabaseReference
@@ -23,6 +24,7 @@ class RegisterActivity : AppCompatActivity() {
     lateinit var btn_register : Button
     lateinit var btn_back : Button
     lateinit var btn_confirm : Button
+    lateinit var spn_City : Spinner
 
 
 
@@ -43,6 +45,8 @@ class RegisterActivity : AppCompatActivity() {
         btn_back = findViewById(R.id.btn_Back)
         btn_confirm = findViewById(R.id.btn_Confirm)
 
+        spn_City = findViewById(R.id.spn_City)
+
 
         btn_back.setOnClickListener {
             onBackPressed()
@@ -57,6 +61,14 @@ class RegisterActivity : AppCompatActivity() {
             var str_name : String = edt_name.text.toString()
             var str_phoneNum : String = edt_phone.text.toString()
             var str_nickname : String = edt_nickname.text.toString()
+
+            val binding = ActivityMainBinding.inflate(layoutInflater)
+            setContentView(binding.root)
+
+            val arrayList_city = arrayListOf<String>("서울특별시", "인천광역시", "부산광역시", "대구광역시","광주광역시", "대전광역시", "울산광역시", "세종특별자치시",
+                    "경기도", "강원도", "충청북도", "충청남도", "전라북도", "전라남도", "경상북도", "경상남도", "제주특별자치도")
+            val arrayAdapter_city = ArrayAdapter(applicationContext,R.layout.textview_blue,arrayList_city)
+           // binding.spn_City.adapter = arrayAdapter_city
 
 
             if(str_email.equals("") || str_pwd.equals("") || str_name.equals("") || str_phoneNum.equals("") || str_nickname.equals("")){
