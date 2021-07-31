@@ -27,6 +27,7 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="70dp"
         android:text="가입하기"
+        android:backgroundTint="@color/lightpurple"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edt_Nickname" />
 
@@ -169,6 +170,7 @@
         android:layout_marginStart="70dp"
         android:layout_marginTop="24dp"
         android:text="취소"
+        android:backgroundTint="@color/verylightpurple"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edt_Nickname" />
 

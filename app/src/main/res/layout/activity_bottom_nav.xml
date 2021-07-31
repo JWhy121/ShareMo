@@ -13,7 +13,7 @@
         android:layout_above="@+id/bottom_Nav"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:background="@color/lightpurple"/>
+        android:background="@color/white"/>
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_Nav"
@@ -21,8 +21,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:background="@color/white"
         android:layout_centerHorizontal="true"
+        app:itemIconTint="@drawable/menu_selector_color"
+        app:itemTextColor="@drawable/menu_selector_color"
         app:labelVisibilityMode="unlabeled"
-        app:itemIconSize="35dp"/>
+        app:itemIconSize="50dp"/>
 
 </RelativeLayout>
