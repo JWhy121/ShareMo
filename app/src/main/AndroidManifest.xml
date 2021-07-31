@@ -19,8 +19,7 @@
         </activity>
         <activity android:name=".BottomNavActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
-        <activity android:name=".WriteTempActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+        <activity android:name=".WriteTempActivity" />
         <activity
             android:name=".WriteActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
