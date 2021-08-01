@@ -25,12 +25,13 @@
             tools:layout_editor_absoluteX="134dp"
             tools:layout_editor_absoluteY="44dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="프로필 사진 바꾸기"
-            android:textColor="@color/purple" />
+            android:backgroundTint="@color/pinkbeige"
+            android:text="사진 업로드" />
+
     </LinearLayout>
 
     <GridLayout
