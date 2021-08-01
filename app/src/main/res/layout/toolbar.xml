@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:id="@+id/toolbar"
     android:background="@color/white">
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/set_date"
+        android:id="@+id/set_title"
         android:text="ShareMo"
         android:textSize="17sp"
-        android:textStyle="bold"
+        android:textStyle="bold|italic"
         android:layout_gravity="center"
         android:textColor="@color/purple"/>
 

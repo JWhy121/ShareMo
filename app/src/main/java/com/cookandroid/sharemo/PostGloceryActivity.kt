@@ -4,6 +4,7 @@ import android.content.Intent
 import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.MenuItem
 import android.util.Log
 import android.view.View
 import android.widget.Button
@@ -35,6 +36,12 @@ class PostGloceryActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_post_glocery)
 
+        //툴바 사용
+        setSupportActionBar(findViewById(R.id.toolbar))
+        val ab = supportActionBar!!
+        ab.setDisplayShowTitleEnabled(false)
+        ab.setDisplayHomeAsUpEnabled(true)
+
         post_nickname = findViewById(R.id.post_Nickname)
         post_content = findViewById(R.id.post_Content)
         post_dong = findViewById(R.id.post_Dong)
@@ -42,7 +49,7 @@ class PostGloceryActivity : AppCompatActivity() {
         post_website = findViewById(R.id.post_Website)
         btn_startChat = findViewById(R.id.btn_StartChat)
         btn_back = findViewById(R.id.btn_Back)
-        btn_delete = findViewById(R.id.btn_Delete)
+        //btn_delete = findViewById(R.id.btn_Delete)
         btn_website = findViewById(R.id.btn_Website)
 
         //파이어베이스 계정, 리얼타임 데이터베이스
@@ -115,6 +122,20 @@ class PostGloceryActivity : AppCompatActivity() {
 
 
         }
+
+    }
+
+    //툴바 뒤로가기
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id = item.itemId
+        when (id) {
+            android.R.id.home -> {
+                finish()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
+
 
     }
 }
