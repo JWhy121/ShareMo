@@ -10,13 +10,13 @@
         android:id="@+id/img_postImg"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="23dp"
-        app:layout_constraintBottom_toTopOf="@+id/post_Content"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/img_UserImg"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.537"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.123"
         tools:srcCompat="@drawable/user" />
 
     <ImageView
@@ -56,7 +56,7 @@
 
     <TextView
         android:id="@+id/post_Content"
-        android:layout_width="387dp"
+        android:layout_width="380dp"
         android:layout_height="152dp"
         android:layout_marginTop="24dp"
         android:text="내용"
@@ -69,7 +69,7 @@
         android:id="@+id/post_Price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="15dp"
         android:text="가격"
         android:textSize="18sp"
@@ -80,32 +80,31 @@
         android:id="@+id/btn_StartChat"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="15dp"
         android:layout_marginBottom="33dp"
+        android:background="@color/lightpurple"
         android:text="채팅하기"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/btn_Back" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <Button
         android:id="@+id/btn_Back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="113dp"
+        android:layout_marginStart="15dp"
         android:layout_marginBottom="33dp"
+        android:background="@color/verylightpurple"
         android:text="목록으로"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btn_StartChat"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/post_Website"
-        android:layout_width="wrap_content"
+        android:layout_width="280dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="37dp"
-        android:layout_marginEnd="51dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="60dp"
         android:text="웹사이트"
-        app:layout_constraintEnd_toStartOf="@+id/btn_Website"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/post_Content" />
 
@@ -123,11 +122,10 @@
         android:id="@+id/btn_Website"
         android:layout_width="0dp"
         android:layout_height="38dp"
-        android:layout_marginTop="28dp"
-        android:layout_marginEnd="222dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="15dp"
         android:text="바로가기"
         android:textSize="8sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/post_Website"
         app:layout_constraintTop_toBottomOf="@+id/post_Content" />
 </androidx.constraintlayout.widget.ConstraintLayout>

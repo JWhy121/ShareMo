@@ -65,6 +65,7 @@
                     android:layout_marginStart="28dp"
                     android:layout_marginTop="28dp"
                     android:text="공릉동"
+                    android:background="@color/verylightpurple"
                     app:layout_constraintStart_toEndOf="@+id/tv_UserName"
                     app:layout_constraintTop_toTopOf="parent" />
 
