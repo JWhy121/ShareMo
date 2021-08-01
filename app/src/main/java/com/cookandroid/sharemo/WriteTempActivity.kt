@@ -5,11 +5,9 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
-import android.view.MenuItem
 import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
-import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -18,15 +16,17 @@ import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.activity_write_glocery.*
 import kotlinx.android.synthetic.main.list_item.view.*
 
+
+/*게시글 리스트 화면*/
 class WriteTempActivity : AppCompatActivity() {
 
-    lateinit var mSearchText: EditText
+    //lateinit var mSearchText: EditText
     lateinit var rv_post : RecyclerView
     lateinit var adapter : RecyclerView.Adapter<PostDataAdapter.CustomViewHolder>
     lateinit var layoutManager: RecyclerView.LayoutManager
     lateinit var arrayList: ArrayList<PostData>
 
-    lateinit var FirebaseRecyclerAdapter : FirebaseRecyclerAdapter<PostData, PostViewHolder>
+  //  lateinit var FirebaseRecyclerAdapter : FirebaseRecyclerAdapter<PostData, PostViewHolder>
 
     private lateinit var database : FirebaseDatabase
     private lateinit var mDatabaseRef : DatabaseReference
@@ -37,15 +37,10 @@ class WriteTempActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_write_glocery)
 
-        setSupportActionBar(findViewById(R.id.toolbar))
-        val ab = supportActionBar!!
-        ab.setDisplayShowTitleEnabled(false)
-        ab.setDisplayHomeAsUpEnabled(true)
-
         rv_post = findViewById(R.id.rv_Post) //아이디 연결
         imgBtn_eidt = findViewById(R.id.imgBtn_Edit)
 
-        mSearchText = findViewById(R.id.edt_SearchText)
+        //mSearchText = findViewById(R.id.edt_SearchText)
         rv_post.setHasFixedSize(true) //리사이클러뷰 성능 강화
         layoutManager = LinearLayoutManager(this)
         rv_post.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
@@ -55,7 +50,7 @@ class WriteTempActivity : AppCompatActivity() {
         database = FirebaseDatabase.getInstance() //파이어베이스 데이터베이스 연동
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("ShareMo")
 
-        mDatabaseRef.child("PostData").orderByKey().addValueEventListener(object : ValueEventListener {
+        mDatabaseRef.child("PostData").addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 //파이어베이스의 데이터를 가져옴
                 arrayList.clear()
@@ -78,15 +73,13 @@ class WriteTempActivity : AppCompatActivity() {
         adapter = PostDataAdapter(arrayList, this)
         rv_post.setAdapter(adapter)
 
-
         //글쓰기 버튼에 클릭 리스너 연결
-        imgBtn_Edit.setOnClickListener {
+        imgBtn_eidt.setOnClickListener {
             var intent = Intent(this, WriteActivity::class.java)
             startActivity(intent)
         }
 
-        mSearchText.addTextChangedListener(object : TextWatcher {
-            //입력 전 처리
+/*        mSearchText.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
             }
 
@@ -100,10 +93,10 @@ class WriteTempActivity : AppCompatActivity() {
             override fun afterTextChanged(s: Editable?) {
             }
 
-        })
+        })*/
 
     }
-    //검색한 데이터 띄우기
+/*    //검색한 데이터 띄우기
     private fun loadFirebaseData(searchText : String) {
         if(searchText.isEmpty()){
             FirebaseRecyclerAdapter.cleanup()
@@ -130,22 +123,12 @@ class WriteTempActivity : AppCompatActivity() {
             rv_post.adapter = FirebaseRecyclerAdapter
         }
 
-    }
+    }*/
 
-    class PostViewHolder(var mview: View): RecyclerView.ViewHolder(mview){
+/*    class PostViewHolder(var mview: View): RecyclerView.ViewHolder(mview){
 
-    }
+    }*/
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        val id = item.itemId
-        when (id) {
-            android.R.id.home -> {
-                finish()
-                return true
-            }
-        }
-        return super.onOptionsItemSelected(item)
-    }
 
     /*override fun onCreateOptionsMenu(menu: Menu?): Boolean{
         menuInflater.inflate(R.menu.menu_search, menu)

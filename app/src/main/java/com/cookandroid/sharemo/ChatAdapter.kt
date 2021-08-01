@@ -1,50 +1,54 @@
 package com.cookandroid.sharemo
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.database.core.utilities.encoding.CustomClassMapper
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.FirebaseUser
 
-class ChatAdapter(val postDataList : ArrayList<PostData>) : RecyclerView.Adapter<ChatAdapter.CustomViewHolder>(){
 
-    private lateinit var mDataset : List<ChatData>
+class ChatAdapter(private val context: Context, private val chatList: ArrayList<ChatData>) :
+    RecyclerView.Adapter<ChatAdapter.ViewHolder>(){
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ChatAdapter.CustomViewHolder {
-        val view = LayoutInflater.from(parent.context).inflate(R.layout.list_item, parent, false)
+    private val MESSAGE_TYPE_LEFT = 0
+    private val MESSAGE_TYPE_RIGHT = 1
+    var firebaseUser: FirebaseUser? = null
 
-        val vh : CustomViewHolder = CustomViewHolder(view)
-        return vh
-    }
-
-    override fun onBindViewHolder(holder: ChatAdapter.CustomViewHolder, position: Int) {
-        val chat : ChatData = mDataset.get(position)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        if(viewType == MESSAGE_TYPE_RIGHT){
+            val view =
+                LayoutInflater.from(parent.context).inflate(R.layout.item_right,parent, false)
+            return ViewHolder(view)
+        }else {
+            val view =
+                LayoutInflater.from(parent.context).inflate(R.layout.item_left, parent, false)
+            return ViewHolder(view)
+        }
     }
 
     override fun getItemCount(): Int {
-        if(mDataset == null){
-            return 0
-        }else{
-            return mDataset.size
+        return chatList.size
+    }
+
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val chat = chatList[position]
+        holder.txtUserName.text = chat.message
+    }
+
+
+    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+        val txtUserName = view.findViewById<TextView>(R.id.tvMessage)
+    }
+
+    override fun getItemViewType(position: Int): Int {
+        firebaseUser = FirebaseAuth.getInstance().currentUser
+        if(chatList[position].senderUid == firebaseUser!!.uid){
+            return MESSAGE_TYPE_RIGHT
+        } else {
+            return MESSAGE_TYPE_LEFT
         }
     }
-
-    class CustomViewHolder(v : View) : RecyclerView.ViewHolder(v){
-        lateinit var TextView_title : TextView
-        lateinit var TextView_content : TextView
-        lateinit var rootView : View
-
-    }
-
-    fun getChat(position : Int) : ChatData {
-        if(mDataset != null){
-            return mDataset.get(position)
-        }else{
-            return null!!
-        }
-    }
-
 }

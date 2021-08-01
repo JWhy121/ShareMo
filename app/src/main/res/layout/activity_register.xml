@@ -180,7 +180,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="34dp"
-        android:text="주소등록"
+        android:text="주소"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
@@ -190,7 +190,8 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginEnd="20dp"
+        android:textAlignment="center"
         app:layout_constraintEnd_toStartOf="@+id/spn_Prov"
         app:layout_constraintTop_toBottomOf="@+id/edt_Nickname" />
 
@@ -199,7 +200,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="32dp"
+        android:layout_marginEnd="20dp"
         app:layout_constraintEnd_toStartOf="@+id/spn_Dong"
         app:layout_constraintTop_toBottomOf="@+id/edt_Nickname" />
 
@@ -208,7 +209,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:layout_marginEnd="76dp"
+        android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edt_Nickname" />
 

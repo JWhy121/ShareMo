@@ -10,6 +10,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
+
+/*로그인 화면*/
 class MainActivity : AppCompatActivity() {
 
     private var mFirebaseAuth : FirebaseAuth? = null //파이어베이스 인증
@@ -37,6 +39,8 @@ class MainActivity : AppCompatActivity() {
             }else{
                 mFirebaseAuth!!.signInWithEmailAndPassword(edtEmail.text.toString(), edtPwd.text.toString())!!.addOnCompleteListener(this) {
                     if (it.isSuccessful) {
+                        edtEmail.setText("")
+                        edtPwd.setText("")
                         var intent = Intent(this, BottomNavActivity::class.java)
                         startActivity(intent)
                     } else {

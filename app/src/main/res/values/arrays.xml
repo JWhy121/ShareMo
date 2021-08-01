@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="spn_City">
+    <string-array name="spinner_region">
         <item></item>
         <item>서울특별시</item>
         <item>부산광역시</item>
@@ -21,7 +21,7 @@
         <item>제주특별자치도</item>
     </string-array>
 
-    <string-array name="Spn_Seoul">
+    <string-array name="spinner_region_seoul">
         <item>강남구</item>
         <item>강동구</item>
         <item>강북구</item>
@@ -49,7 +49,7 @@
         <item>중랑구</item>
     </string-array>
 
-    <string-array name="spn_Seoul_Gangnam">
+    <string-array name="spinner_region_seoul_gangnam">
         <item>개포동</item>
         <item>논현동</item>
         <item>대치동</item>
@@ -66,7 +66,7 @@
         <item>청담동</item>
     </string-array>
 
-    <string-array name="spn_Seoul_Gangdong">
+    <string-array name="spinner_region_seoul_gangdong">
         <item>강일동</item>
         <item>고덕동</item>
         <item>길동</item>
@@ -78,14 +78,14 @@
         <item>천호동</item>
     </string-array>
 
-    <string-array name="spn_Seoul_Gangbuk">
+    <string-array name="spinner_region_seoul_gangbuk">
         <item>미아동</item>
         <item>번동</item>
         <item>수유동</item>
         <item>우이동</item>
     </string-array>
 
-    <string-array name="spn_Seoul_Gangseo">
+    <string-array name="spinner_region_seoul_gangseo">
         <item>가양동</item>
         <item>개화동</item>
         <item>공항동</item>
@@ -101,12 +101,12 @@
         <item>화곡동</item>
     </string-array>
 
-    <string-array name="spn_Seoul_Gwanak">
+    <string-array name="spinner_region_seoul_gwanak">
         <item>남현동</item>
         <item>봉천동</item>
         <item>신림동</item>
     </string-array>
-    <string-array name="spn_Seoul_Gwangjin">
+    <string-array name="spinner_region_seoul_gwangjin">
         <item>광장동</item>
         <item>구의동</item>
         <item>군자동</item>
@@ -116,7 +116,7 @@
         <item>화양동</item>
     </string-array>
 
-    <string-array name="spn_Seoul_Guro">
+    <string-array name="spinner_region_seoul_guro">
         <item>가리봉동</item>
         <item>개봉동</item>
         <item>고척동</item>
@@ -129,13 +129,13 @@
         <item>항동</item>
     </string-array>
 
-    <string-array name="spn_Seoul_Geumcheon">
+    <string-array name="spinner_region_seoul_geumcheon">
         <item>가산동</item>
         <item>독산동</item>
         <item>시흥동</item>
     </string-array>
 
-    <string-array name="spn_Seoul_Nowon">
+    <string-array name="spinner_region_seoul_nowon">
         <item>공릉동</item>
         <item>상계동</item>
         <item>월계동</item>
@@ -143,14 +143,14 @@
         <item>하계동</item>
     </string-array>
 
-    <string-array name="spn_Seoul_Dobong">
+    <string-array name="spinner_region_seoul_dobong">
         <item>도봉동</item>
         <item>방학동</item>
         <item>쌍문동</item>
         <item>창동</item>
     </string-array>
 
-    <string-array name="spn_Seoul_Dongdaemun">
+    <string-array name="spinner_region_seoul_dongdaemun">
         <item>답십리</item>
         <item>신설동</item>
         <item>용두동</item>
@@ -163,7 +163,7 @@
         <item>휘경동</item>
     </string-array>
 
-    <string-array name="spn_Seoul_Dongjag">
+    <string-array name="spinner_region_seoul_dongjag">
         <item>노량진동</item>
         <item>대방동</item>
         <item>동작동</item>
@@ -175,7 +175,7 @@
         <item>흑석동</item>
     </string-array>
 
-    <string-array name="spn_Seoul_Mapo">
+    <string-array name="spinner_region_seoul_mapo">
         <item>공덕동</item>
         <item>누수동</item>
         <item>고노산동</item>
@@ -204,7 +204,7 @@
         <item>현석동</item>
     </string-array>
 
-    <string-array name="spn_Seoul_Seodaemun">
+    <string-array name="spinner_region_seoul_seodaemun">
         <item>남가좌동</item>
         <item>냉천동</item>
         <item>대신동</item>
@@ -227,7 +227,7 @@
         <item>홍제동</item>
     </string-array>
 
-    <string-array name="spn_Seoul_Seocho">
+    <string-array name="spinner_region_seoul_seocho">
         <item>내곡동</item>
         <item>반포동</item>
         <item>방배동</item>
@@ -240,7 +240,7 @@
         <item>잠원동</item>
     </string-array>
 
-    <string-array name="spn_Seoul_Seongdong">
+    <string-array name="spinner_region_seoul_seongdong">
         <item>금호동1가</item>
         <item>금호동2가</item>
         <item>금호동3가</item>
@@ -260,7 +260,7 @@
         <item>홍익동</item>
     </string-array>
 
-    <string-array name="spn_Seoul_Seongbuk">
+    <string-array name="spinner_region_seoul_seongbuk">
         <item>길음동</item>
         <item>돈암동</item>
         <item>동선동1가</item>
@@ -302,7 +302,7 @@
         <item>하월곡동</item>
     </string-array>
 
-    <string-array name="spn_Seoul_Songpa">
+    <string-array name="spinner_region_seoul_songpa">
         <item>가락동</item>
         <item>거여동</item>
         <item>마천동</item>
@@ -318,13 +318,13 @@
         <item>풍납동</item>
     </string-array>
 
-    <string-array name="spn_Seoul_Yangcheon">
+    <string-array name="spinner_region_seoul_yangcheon">
         <item>목동</item>
         <item>신월동</item>
         <item>신정동</item>
     </string-array>
 
-    <string-array name="spn_Seoul_Yeongdeungpo">
+    <string-array name="spinner_region_seoul_yeongdeungpo">
         <item>당산동</item>
         <item>당산동1가</item>
         <item>당산동2가</item>
@@ -361,7 +361,7 @@
         <item>영등포동8가</item>
     </string-array>
 
-    <string-array name="spn_Seoul_Yongsan">
+    <string-array name="spinner_region_seoul_yongsan">
         <item>갈월동</item>
         <item>남영동</item>
         <item>도원동</item>
@@ -400,7 +400,7 @@
         <item>후암동</item>
     </string-array>
 
-    <string-array name="spn_Seoul_Eunpyeong">
+    <string-array name="spinner_region_seoul_eunpyeong">
         <item>갈현동</item>
         <item>구산동</item>
         <item>녹번동</item>
@@ -414,7 +414,7 @@
         <item>진관동</item>
     </string-array>
 
-    <string-array name="spn_Seoul_Jongro">
+    <string-array name="spinner_region_seoul_jongno">
         <item>가희동</item>
         <item>견지동</item>
         <item>경운동</item>
@@ -504,7 +504,7 @@
         <item>훈정동</item>
     </string-array>
 
-    <string-array name="spn_Seoul_Jung">
+    <string-array name="spinner_region_seoul_jung">
         <item>광희동1가</item>
         <item>광희동2가</item>
         <item>남대문로1가</item>
@@ -581,7 +581,7 @@
         <item>홍인동</item>
     </string-array>
 
-    <string-array name="spn_Seoul_Jungnanggu">
+    <string-array name="spinner_region_seoul_jungnanggu">
         <item>망우동</item>
         <item>면목동</item>
         <item>묵동</item>
@@ -590,7 +590,7 @@
         <item>중화동</item>
     </string-array>
 
-    <string-array name="spn_Busan">
+    <string-array name="spinner_region_busan">
         <item>강서구</item>
         <item>금정구</item>
         <item>기장군</item>
@@ -609,7 +609,7 @@
         <item>해운대구</item>
     </string-array>
 
-    <string-array name="spn_Incheon">
+    <string-array name="spinner_region_incheon">
         <item>강화군</item>
         <item>계양구</item>
         <item>남구</item>
@@ -622,7 +622,7 @@
         <item>중구</item>
     </string-array>
 
-    <string-array name="spn_Daegu">
+    <string-array name="spinner_region_daegu">
         <item>중구</item>
         <item>동구</item>
         <item>서구</item>
@@ -633,7 +633,7 @@
         <item>달성군</item>
     </string-array>
 
-    <string-array name="spn_Gwangju">
+    <string-array name="spinner_region_gwangju">
         <item>동구</item>
         <item>서구</item>
         <item>남구</item>
@@ -641,7 +641,7 @@
         <item>광산구</item>
     </string-array>
 
-    <string-array name="spn_Daejeon">
+    <string-array name="spinner_region_daejeon">
         <item>대덕구</item>
         <item>동구</item>
         <item>서구</item>
@@ -649,7 +649,7 @@
         <item>중구</item>
     </string-array>
 
-    <string-array name="spn_Ulsan">
+    <string-array name="spinner_region_ulsan">
         <item>남구</item>
         <item>동구</item>
         <item>북구</item>
@@ -657,11 +657,11 @@
         <item>중구</item>
     </string-array>
 
-    <string-array name="spn_Sejong">
+    <string-array name="spinner_region_sejong">
         <item>없음</item>
     </string-array>
 
-    <string-array name="spn_Gyeonggi">
+    <string-array name="spinner_region_gyeonggi">
         <item>가평군</item>
         <item>고양시</item>
         <item>과천시</item>
@@ -695,7 +695,7 @@
         <item>화성시</item>
     </string-array>
 
-    <string-array name="spn_Gangwon">
+    <string-array name="spinner_region_gangwon">
         <item>강릉시</item>
         <item>고성군</item>
         <item>동해시</item>
@@ -716,7 +716,7 @@
         <item>횡성군</item>
     </string-array>
 
-    <string-array name="spn_Chung_buk">
+    <string-array name="spinner_region_chung_buk">
         <item>괴산군</item>
         <item>단양군</item>
         <item>보은군</item>
@@ -730,7 +730,7 @@
         <item>충주시</item>
     </string-array>
 
-    <string-array name="spn_Chung_nam">
+    <string-array name="spinner_region_chung_nam">
         <item>계룡시</item>
         <item>공주시</item>
         <item>금산군</item>
@@ -748,7 +748,7 @@
         <item>홍성군</item>
     </string-array>
 
-    <string-array name="spn_Gyeong_buk">
+    <string-array name="spinner_region_gyeong_buk">
         <item>경산시</item>
         <item>경주시</item>
         <item>고령군</item>
@@ -774,7 +774,7 @@
         <item>포항시</item>
     </string-array>
 
-    <string-array name="spn_Gyeong_nam">
+    <string-array name="spinner_region_gyeong_nam">
         <item>거제시</item>
         <item>거창군</item>
         <item>고성군</item>
@@ -795,7 +795,7 @@
         <item>합천군</item>
     </string-array>
 
-    <string-array name="spn_Jeon_buk">
+    <string-array name="spinner_region_jeon_buk">
         <item>고창군</item>
         <item>군산시</item>
         <item>김제시</item>
@@ -812,7 +812,7 @@
         <item>진안군</item>
     </string-array>
 
-    <string-array name="spn_Jeon_nam">
+    <string-array name="spinner_region_jeon_nam">
         <item>강진군</item>
         <item>고흥군</item>
         <item>곡성군</item>
@@ -837,7 +837,7 @@
         <item>화순군</item>
     </string-array>
 
-    <string-array name="Spn_Jeju">
+    <string-array name="spinner_region_jeju">
         <item>서귀포시</item>
         <item>제주시</item>
     </string-array>

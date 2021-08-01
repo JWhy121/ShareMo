@@ -13,6 +13,8 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
 
+
+/*프로필 화면*/
 class ProfileFragment : Fragment(){
 
     companion object {

@@ -12,6 +12,8 @@ import android.widget.ImageView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 
+
+/*홈 화면*/
 class HomeFragment : Fragment() {
 
 
