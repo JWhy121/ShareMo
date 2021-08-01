@@ -39,11 +39,11 @@ class ChangeInfoActivity : AppCompatActivity() {
         setContentView(R.layout.activity_change_info)
 
         //var user = Firebase.auth.currentUser
-        if(user != null){
+       // if(user != null){
 
-        }else {
+      //  }else {
 
-        }
+      //  }
 
         //val user = Firebase.auth.currentUser
 
@@ -62,7 +62,7 @@ class ChangeInfoActivity : AppCompatActivity() {
 
         btn_changeInfo.setOnClickListener{
             //이름 받아오기
-            var str_name : String = edt_infoName.text.toString()
+           // var str_name : String = edt_infoName.text.toString()
             //닉네임 받아오기
             //닉네임 수정 시 string으로 받아서 저장할 수 있도록
             //전화번호 받아오기
