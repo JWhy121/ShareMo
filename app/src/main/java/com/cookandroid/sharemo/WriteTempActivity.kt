@@ -22,13 +22,13 @@ import kotlinx.android.synthetic.main.list_item.view.*
 /*게시글 리스트 화면*/
 class WriteTempActivity : AppCompatActivity() {
 
-    //lateinit var mSearchText: EditText
+    lateinit var mSearchText: EditText//검색
     lateinit var rv_post : RecyclerView
     lateinit var adapter : RecyclerView.Adapter<PostDataAdapter.CustomViewHolder>
     lateinit var layoutManager: RecyclerView.LayoutManager
     lateinit var arrayList: ArrayList<PostData>
 
-  //  lateinit var FirebaseRecyclerAdapter : FirebaseRecyclerAdapter<PostData, PostViewHolder>
+    lateinit var FirebaseRecyclerAdapter : FirebaseRecyclerAdapter<PostData, PostViewHolder>//검색
 
     private lateinit var database : FirebaseDatabase
     private lateinit var mDatabaseRef : DatabaseReference

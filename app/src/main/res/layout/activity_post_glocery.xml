@@ -1,131 +1,147 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".PostGloceryActivity">
 
-    <ImageView
-        android:id="@+id/img_postImg"
-        android:layout_width="wrap_content"
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="10dp"
-        app:layout_constraintBottom_toTopOf="@+id/img_UserImg"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.537"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@drawable/user" />
+        android:id="@+id/toolbar"
+        android:background="@color/white">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/set_date"
+            android:text="ShareMo"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:textColor="@color/purple"/>
 
-    <ImageView
-        android:id="@+id/img_UserImg"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="189dp"
-        android:layout_marginEnd="11dp"
-        app:layout_constraintEnd_toStartOf="@+id/post_Nickname"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/user" />
+    </androidx.appcompat.widget.Toolbar>
 
-    <TextView
-        android:id="@+id/post_Nickname"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="27dp"
-        android:layout_marginEnd="259dp"
-        android:text="닉네임"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/img_UserImg"
-        app:layout_constraintTop_toTopOf="@+id/img_UserImg" />
 
-    <TextView
-        android:id="@+id/post_Dong"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="52dp"
-        android:text="동네"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/img_postImg" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <TextView
-        android:id="@+id/post_Content"
-        android:layout_width="380dp"
-        android:layout_height="152dp"
-        android:layout_marginTop="24dp"
-        android:text="내용"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/post_Nickname" />
+        <ImageView
+            android:id="@+id/img_postImg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            app:layout_constraintBottom_toTopOf="@+id/img_UserImg"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.537"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@drawable/user" />
 
-    <TextView
-        android:id="@+id/post_Price"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="15dp"
-        android:text="가격"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/textView13"
-        app:layout_constraintTop_toBottomOf="@+id/post_Content" />
+        <ImageView
+            android:id="@+id/img_UserImg"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="189dp"
+            android:layout_marginEnd="11dp"
+            app:layout_constraintEnd_toStartOf="@+id/post_Nickname"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/user" />
 
-    <Button
-        android:id="@+id/btn_StartChat"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="33dp"
-        android:background="@color/lightpurple"
-        android:text="채팅하기"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        <TextView
+            android:id="@+id/post_Nickname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="27dp"
+            android:layout_marginEnd="259dp"
+            android:text="닉네임"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/img_UserImg"
+            app:layout_constraintTop_toTopOf="@+id/img_UserImg" />
 
-    <Button
-        android:id="@+id/btn_Back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginBottom="33dp"
-        android:background="@color/verylightpurple"
-        android:text="목록으로"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        <TextView
+            android:id="@+id/post_Dong"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="48dp"
+            android:layout_marginEnd="52dp"
+            android:text="동네"
+            android:background="@color/lightpurple"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/img_postImg" />
 
-    <TextView
-        android:id="@+id/post_Website"
-        android:layout_width="280dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginTop="60dp"
-        android:text="웹사이트"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/post_Content" />
+        <TextView
+            android:id="@+id/post_Content"
+            android:layout_width="380dp"
+            android:layout_height="152dp"
+            android:layout_marginTop="24dp"
+            android:text="내용"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/post_Nickname" />
 
-    <TextView
-        android:id="@+id/textView13"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="13dp"
-        android:layout_marginEnd="27dp"
-        android:text="원"
-        app:layout_constraintEnd_toEndOf="@+id/post_Content"
-        app:layout_constraintTop_toBottomOf="@+id/post_Content" />
+        <TextView
+            android:id="@+id/post_Price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="15dp"
+            android:text="가격"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@+id/textView13"
+            app:layout_constraintTop_toBottomOf="@+id/post_Content" />
 
-    <Button
-        android:id="@+id/btn_Website"
-        android:layout_width="0dp"
-        android:layout_height="38dp"
-        android:layout_marginTop="50dp"
-        android:layout_marginEnd="15dp"
-        android:text="바로가기"
-        android:textSize="8sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/post_Content" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <Button
+            android:id="@+id/btn_StartChat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_marginEnd="15dp"
+            android:background="@color/lightpurple"
+            android:text="채팅하기"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_Website" />
+
+        <TextView
+            android:id="@+id/post_Website"
+            android:layout_width="280dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="60dp"
+            android:text="웹사이트"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/post_Content" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="13dp"
+            android:layout_marginEnd="27dp"
+            android:text="원"
+            app:layout_constraintEnd_toEndOf="@+id/post_Content"
+            app:layout_constraintTop_toBottomOf="@+id/post_Content" />
+
+        <Button
+            android:id="@+id/btn_Website"
+            android:layout_width="0dp"
+            android:layout_height="38dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="15dp"
+            android:text="바로가기"
+            android:textSize="8sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/post_Content" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</LinearLayout>

@@ -19,16 +19,17 @@
         app:layout_constraintTop_toBottomOf="@+id/iv_ContentImage"
         tools:ignore="MissingConstraints" />
 
-    <Button
+    <ImageView
         android:id="@+id/btn_Close"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="닫기"
-        android:background="@color/verylightpurple"
+        android:clickable="true"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_baseline_close_24"
+        tools:ignore="VectorDrawableCompat" />
 
     <Button
         android:id="@+id/btn_Upload"

@@ -148,7 +148,7 @@
         android:layout_margin="30dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/verylightpurple"
+        android:backgroundTint="@color/verylightpurple"
         android:text="수정하기" />
 
 
