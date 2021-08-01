@@ -19,6 +19,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
 import android.Manifest
+import android.view.MenuItem
 
 class ChangeInfoActivity : AppCompatActivity() {
 
@@ -40,7 +41,11 @@ class ChangeInfoActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_change_info)
 
-
+        //툴바 사용
+        setSupportActionBar(findViewById(R.id.toolbar))
+        val ab = supportActionBar!!
+        ab.setDisplayShowTitleEnabled(false)
+        ab.setDisplayHomeAsUpEnabled(true)
 
         //var user = Firebase.auth.currentUser
        // if(user != null){
@@ -53,7 +58,7 @@ class ChangeInfoActivity : AppCompatActivity() {
 
 
         mFirebaseAuth = FirebaseAuth.getInstance()
-        mDatabaseRef = FirebaseDatabase.getInstance().getReference("sharMo")
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("ShareMo")
 
         edt_infoName = findViewById(R.id.edt_InfoName)
         edt_InfoNickname = findViewById(R.id.edt_InfoNickname)
@@ -81,6 +86,18 @@ class ChangeInfoActivity : AppCompatActivity() {
         }
 
 
+    }
+
+    //툴바 뒤로가기
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val id = item.itemId
+        when (id) {
+            android.R.id.home -> {
+                finish()
+                return true
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 
 

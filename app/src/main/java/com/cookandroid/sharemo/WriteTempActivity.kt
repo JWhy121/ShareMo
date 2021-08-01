@@ -37,6 +37,7 @@ class WriteTempActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_write_glocery)
 
+        //툴바 사용
         setSupportActionBar(findViewById(R.id.toolbar))
         val ab = supportActionBar!!
         ab.setDisplayShowTitleEnabled(false)
@@ -136,6 +137,7 @@ class WriteTempActivity : AppCompatActivity() {
 
     }
 
+    //툴바 뒤로가기
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         val id = item.itemId
         when (id) {
