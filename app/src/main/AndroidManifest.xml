@@ -31,7 +31,9 @@
         <activity android:name=".WriteTempActivity"></activity>
         <activity
             android:name=".WriteActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
         <activity android:name=".ChangeInfoActivity" />
         <activity
             android:name=".RegisterActivity"

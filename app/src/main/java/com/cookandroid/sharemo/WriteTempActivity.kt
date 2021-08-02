@@ -87,22 +87,22 @@ class WriteTempActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        mSearchText.addTextChangedListener(object : TextWatcher {
-            //입력 전 처리
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-            }
-
-            //입력하는 중간에 처리
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                val searchText = mSearchText.getText().toString().trim()
-                loadFirebaseData(searchText)
-            }
-
-            //입력이 끝났을 때 처리
-            override fun afterTextChanged(s: Editable?) {
-            }
-
-        })
+//        mSearchText.addTextChangedListener(object : TextWatcher {
+//            //입력 전 처리
+//            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+//            }
+//
+//            //입력하는 중간에 처리
+//            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+//                val searchText = mSearchText.getText().toString().trim()
+//                loadFirebaseData(searchText)
+//            }
+//
+//            //입력이 끝났을 때 처리
+//            override fun afterTextChanged(s: Editable?) {
+//            }
+//
+//        })
 
     }
     //검색한 데이터 띄우기
