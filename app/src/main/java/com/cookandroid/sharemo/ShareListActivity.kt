@@ -1,5 +1,6 @@
 package com.cookandroid.sharemo
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
@@ -9,26 +10,28 @@ import android.view.MenuItem
 import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
-import android.widget.Toolbar
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.google.firebase.database.*
-import kotlinx.android.synthetic.main.activity_write_glocery.*
+import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.list_item.view.*
 
 
 /*게시글 리스트 화면*/
-class WriteTempActivity : AppCompatActivity() {
+class ShareListActivity : AppCompatActivity() {
 
-    //lateinit var mSearchText: EditText
+    lateinit var mSearchText: EditText
     lateinit var rv_post : RecyclerView
     lateinit var adapter : RecyclerView.Adapter<PostDataAdapter.CustomViewHolder>
     lateinit var layoutManager: RecyclerView.LayoutManager
     lateinit var arrayList: ArrayList<PostData>
 
-  //  lateinit var FirebaseRecyclerAdapter : FirebaseRecyclerAdapter<PostData, PostViewHolder>
+    lateinit var FirebaseRecyclerAdapter : FirebaseRecyclerAdapter<PostData , UsersViewHolder>
+
 
     private lateinit var database : FirebaseDatabase
     private lateinit var mDatabaseRef : DatabaseReference
@@ -37,7 +40,7 @@ class WriteTempActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_write_glocery)
+        setContentView(R.layout.activity_share_list)
 
         //툴바 사용
         setSupportActionBar(findViewById(R.id.toolbar))
@@ -47,8 +50,8 @@ class WriteTempActivity : AppCompatActivity() {
 
         rv_post = findViewById(R.id.rv_Post) //아이디 연결
         imgBtn_eidt = findViewById(R.id.imgBtn_Edit)
+        mSearchText = findViewById(R.id.edt_SearchText)
 
-        //mSearchText = findViewById(R.id.edt_SearchText)
         rv_post.setHasFixedSize(true) //리사이클러뷰 성능 강화
         layoutManager = LinearLayoutManager(this)
         rv_post.layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
@@ -58,7 +61,13 @@ class WriteTempActivity : AppCompatActivity() {
         database = FirebaseDatabase.getInstance() //파이어베이스 데이터베이스 연동
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("ShareMo")
 
-        mDatabaseRef.child("PostData").addValueEventListener(object : ValueEventListener {
+        var intent : Intent = getIntent()
+
+        var selectedItem : String? = intent.getStringExtra("SELECTED_ITEM")
+
+
+        mDatabaseRef.child("PostData").child("$selectedItem")
+            .orderByChild("timestamp").addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
                 //파이어베이스의 데이터를 가져옴
                 arrayList.clear()
@@ -71,7 +80,6 @@ class WriteTempActivity : AppCompatActivity() {
                     Log.d("태그", "$arrayList")
                 }
                 adapter.notifyDataSetChanged() //리스트 저장 및 새로고침
-
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -87,55 +95,71 @@ class WriteTempActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        mSearchText.addTextChangedListener(object : TextWatcher {
-            //입력 전 처리
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+        mSearchText.addTextChangedListener(object  : TextWatcher {
+            override fun afterTextChanged(p0: Editable?) {
+
             }
 
-            //입력하는 중간에 처리
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+            }
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
                 val searchText = mSearchText.getText().toString().trim()
+
                 loadFirebaseData(searchText)
             }
-
-            //입력이 끝났을 때 처리
-            override fun afterTextChanged(s: Editable?) {
-            }
-
-        })
+        } )
 
     }
+
+
     //검색한 데이터 띄우기
     private fun loadFirebaseData(searchText : String) {
+
         if(searchText.isEmpty()){
+
             FirebaseRecyclerAdapter.cleanup()
-            rv_post.adapter = FirebaseRecyclerAdapter
+
+            rv_post.setAdapter(adapter)
 
         }else {
-            val firebaseSearchQuery = mDatabaseRef.orderByChild("PostData").startAt(searchText).endAt(searchText + "\uf8ff")
 
-            val FirebaseRecyclerAdapter = object : FirebaseRecyclerAdapter<PostData, PostViewHolder>(
+            mDatabaseRef = FirebaseDatabase.getInstance().getReference("ShareMo")
+
+            var intent : Intent = getIntent()
+
+            var selectedItem : String? = intent.getStringExtra("SELECTED_ITEM")
+
+            val firebaseSearchQuery = mDatabaseRef.child("PostData").child("$selectedItem").orderByChild("content").startAt(searchText).endAt(searchText + "\uf8ff")
+
+            FirebaseRecyclerAdapter = object : FirebaseRecyclerAdapter<PostData, UsersViewHolder>(
                     PostData::class.java,
                     R.layout.list_item,
-                    PostViewHolder::class.java,
+                    UsersViewHolder::class.java,
                     firebaseSearchQuery
-            ){
-                override fun populateViewHolder(viewHolder: PostViewHolder, model: PostData?, position: Int) {
-                    viewHolder.mview.tv_Dong.setText(model?.dong)
-                    viewHolder.mview.tv_Content.setText(model?.content)
-                    viewHolder.mview.tv_Nickname.setText(model?.nickname)
-                    viewHolder.mview.tv_Price.setText(model?.price)
+            ) {
+                override fun populateViewHolder(viewHolder: UsersViewHolder?, model: PostData?, position: Int) {
 
-                    //Picasso.with(applicationContext).load(model?.image).into(viewHolder.mview.UserImageView)//이미지 할 때 사용
+                    viewHolder!!.content.text = model?.content
+                    viewHolder!!.dong.text = model?.dong
+                    viewHolder!!.price.text = model?.price
+                    viewHolder!!.nickname.text = model?.nickname
+                    Glide.with(viewHolder!!.itemView)
+                        .load(model?.imgUrl)
+                        .into(viewHolder!!.iv_img)
                 }
             }
-            rv_post.adapter = FirebaseRecyclerAdapter
+            rv_post.setAdapter(FirebaseRecyclerAdapter)
         }
-
     }
 
-    class PostViewHolder(var mview: View): RecyclerView.ViewHolder(mview){
-
+    class UsersViewHolder(var mview : View) : RecyclerView.ViewHolder(mview) {
+        val content = mview.findViewById<TextView>(R.id.tv_Content)
+        val dong = mview.findViewById<TextView>(R.id.tv_Dong)
+        val nickname = mview.findViewById<TextView>(R.id.tv_Nickname)
+        val price = mview.findViewById<TextView>(R.id.tv_Price)
+        val iv_img = mview.findViewById<ImageView>(R.id.iv_Image)
     }
 
     //툴바 뒤로가기
@@ -149,20 +173,5 @@ class WriteTempActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
-
-    /*override fun onCreateOptionsMenu(menu: Menu?): Boolean{
-        menuInflater.inflate(R.menu.menu_search, menu)
-
-        val search = menu?.findItem(R.id.menu_action_search)
-        val searchView = search?.actionView as? SearchView
-        searchView?.isSubmitButtonEnabled = true
-        //searchView?.setOnQueryTextListener(this)
-
-
-        return true
-    }
-
-
-     */
 
 }

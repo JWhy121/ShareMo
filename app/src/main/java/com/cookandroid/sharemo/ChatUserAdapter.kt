@@ -9,11 +9,21 @@ import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DatabaseReference
 
 
-
-class ChatUserAdapter(private val context: Context, private val userList: ArrayList<User>) :
+class ChatUserAdapter() :
     RecyclerView.Adapter<ChatUserAdapter.ViewHolder>() {
+
+    private lateinit var chatUserList : ArrayList<ChatData>
+    private lateinit var context: Context
+
+    constructor(chatUserList : ArrayList<ChatData>, context: Context) : this(){
+        this.chatUserList = chatUserList
+        this.context = context
+    }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_user, parent, false)
@@ -21,24 +31,20 @@ class ChatUserAdapter(private val context: Context, private val userList: ArrayL
     }
 
     override fun getItemCount(): Int {
-        return userList.size
+        if(chatUserList != null){
+            return chatUserList.size
+        }else{
+            return 0
+        }
+
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val user = userList[position]
-        holder.nickname.text = user.user_nickname
-
-        holder.layoutUser.setOnClickListener {
-            val intent = Intent(context,ChatRoomActivity::class.java)
-            intent.putExtra("user_uid",user.user_uid)
-            intent.putExtra("user_nickname",user.user_nickname)
-            context.startActivity(intent)
-        }
+        holder.nickname.text = chatUserList.get(position).receiverNickname
     }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         val nickname = view.findViewById<TextView>(R.id.tv_ChatListUser)
-        val layoutUser = view.findViewById<LinearLayout>(R.id.LayoutUser)
     }
 }

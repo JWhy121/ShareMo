@@ -12,5 +12,7 @@ data class PostData(
         var price : String? = null,
         var dong : String? = null,
         var website : String? = null,
-        var item : String? = null
+        var item : String? = null,
+        var timstamp : String? = null,
+        var imgUrl : String? = null
 )

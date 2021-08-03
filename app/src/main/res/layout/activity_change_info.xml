@@ -35,8 +35,8 @@
 
         <ImageView
             android:id="@+id/iv_InfoPhoto"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
             android:layout_gravity="center_horizontal"
             app:srcCompat="@drawable/user"
             tools:layout_editor_absoluteX="134dp"
@@ -103,7 +103,10 @@
             android:layout_columnSpan="3"
             android:layout_gravity="fill_horizontal"
             android:layout_weight="1"
-            android:focusableInTouchMode="false" />
+            android:editable="false"
+            android:focusableInTouchMode="false"
+            android:gravity="center"
+            android:textSize="18sp" />
 
         <EditText
             android:id="@+id/edt_InfoNickname"
@@ -126,6 +129,7 @@
             android:layout_gravity="fill_horizontal"
             android:layout_weight="1"
             android:hint=" 6자 이상 입력"
+            android:inputType="textPassword"
             android:singleLine="true" />
 
         <EditText

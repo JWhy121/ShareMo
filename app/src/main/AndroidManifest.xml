@@ -3,7 +3,9 @@
     package="com.cookandroid.sharemo">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.INTERNET" />
+
 
     <application
         android:allowBackup="true"
@@ -12,10 +14,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.ShareMo">
-        <activity android:name=".WebViewActivity"></activity>
-        <activity android:name=".ChatUsersActivity" />
         <activity android:name=".ChatRoomActivity"></activity>
-        <activity android:name=".PostGloceryActivity" />
+        <activity android:name=".PostActivity" />
         <activity
             android:name=".StartActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
@@ -28,7 +28,7 @@
         <activity
             android:name=".BottomNavActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".WriteTempActivity"></activity>
+        <activity android:name=".ShareListActivity"></activity>
         <activity
             android:name=".WriteActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>

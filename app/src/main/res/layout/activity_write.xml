@@ -7,7 +7,7 @@
     tools:context=".WriteActivity">
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/btn_ImgUpload"
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginStart="16dp"
@@ -49,7 +49,8 @@
         android:ems="10"
         android:gravity="top"
         android:hint="내용을 입력하세요"
-        android:inputType="textPersonName"
+        android:inputType="textMultiLine|textPersonName"
+        android:scrollHorizontally="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -69,8 +70,8 @@
 
     <ImageView
         android:id="@+id/iv_ContentImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.042"

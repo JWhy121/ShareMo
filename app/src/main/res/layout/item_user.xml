@@ -5,8 +5,7 @@
     android:id="@+id/LayoutUser"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
-    tools:context=".ChatActivity">
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -20,37 +19,24 @@
                 android:id="@+id/iv_SharePhoto"
                 android:layout_width="51dp"
                 android:layout_height="47dp"
-                android:layout_marginStart="10dp"
+                android:layout_marginStart="36dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
                 app:srcCompat="@drawable/plusalphaphoto" />
-
-            <TextView
-                android:id="@+id/tv_ChatContent"
-                android:layout_width="245dp"
-                android:layout_height="42dp"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:text="내용이 들어갑니다"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/iv_SharePhoto"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.4" />
 
             <TextView
                 android:id="@+id/tv_ChatListUser"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="28dp"
+                android:layout_marginEnd="44dp"
                 android:text="닉네임"
-                app:layout_constraintBottom_toBottomOf="@+id/tv_ChatContent"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="@+id/tv_ChatContent"
-                app:layout_constraintVertical_bias="0.521" />
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>

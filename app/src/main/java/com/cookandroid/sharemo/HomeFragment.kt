@@ -7,10 +7,8 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.ImageView
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
 
 
 /*홈 화면*/
@@ -54,11 +52,36 @@ class HomeFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_home, container, false)
 
         var imgBtn_glocery : ImageView = view.findViewById(R.id.imgBtn_Glocery)
+        var imgBtn_talent : ImageView = view.findViewById(R.id.imgBtn_Talent)
+        var imgBtn_car : ImageView = view.findViewById(R.id.imgBtn_Car)
+        var imgBtn_etc : ImageView = view.findViewById(R.id.imgBtn_Etc)
 
         imgBtn_glocery.setOnClickListener {
 
-            val intent = Intent(getActivity(), WriteTempActivity::class.java)
+            val intent = Intent(getActivity(), ShareListActivity::class.java)
+            intent.putExtra("SELECTED_ITEM","생필품/음식")
             startActivity(intent)
+        }
+
+        imgBtn_talent.setOnClickListener {
+
+            val intent = Intent(getActivity(), ShareListActivity::class.java)
+            intent.putExtra("SELECTED_ITEM","재능")
+            startActivity(intent)
+        }
+
+        imgBtn_car.setOnClickListener {
+
+            val intent = Intent(getActivity(), ShareListActivity::class.java)
+            intent.putExtra("SELECTED_ITEM","이동수단")
+            startActivity(intent)
+        }
+
+        imgBtn_etc.setOnClickListener {
+
+            val intent = Intent(getActivity(), ShareListActivity::class.java)
+            intent.putExtra("SELECTED_ITEM","기타")
+           startActivity(intent)
         }
 
         return view

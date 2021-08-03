@@ -98,7 +98,6 @@ class RegisterActivity : AppCompatActivity() {
                         val hashMap : HashMap<String, String> = HashMap()
                         hashMap.put("user_uid", user_uid)
                         hashMap.put("user_name", user_name)
-                        hashMap.put("user_pwd", user_pwd)
                         hashMap.put("user_phone", user_phone)
                         hashMap.put("user_nickname", user_nickname)
                         hashMap.put("user_email", user_email)

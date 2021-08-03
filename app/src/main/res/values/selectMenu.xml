@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="selectItem">
-        <item>생필품/음식</item>
+        <item>생필품or음식</item>
         <item>재능</item>
         <item>이동수단</item>
         <item>기타</item>
