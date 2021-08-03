@@ -80,6 +80,7 @@ class ShareListActivity : AppCompatActivity() {
                     Log.d("태그", "$arrayList")
                 }
                 adapter.notifyDataSetChanged() //리스트 저장 및 새로고침
+
             }
 
             override fun onCancelled(error: DatabaseError) {
@@ -173,5 +174,20 @@ class ShareListActivity : AppCompatActivity() {
         }
         return super.onOptionsItemSelected(item)
     }
+
+    /*override fun onCreateOptionsMenu(menu: Menu?): Boolean{
+        menuInflater.inflate(R.menu.menu_search, menu)
+
+        val search = menu?.findItem(R.id.menu_action_search)
+        val searchView = search?.actionView as? SearchView
+        searchView?.isSubmitButtonEnabled = true
+        //searchView?.setOnQueryTextListener(this)
+
+
+        return true
+    }
+
+
+     */
 
 }

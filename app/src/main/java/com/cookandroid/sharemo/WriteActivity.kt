@@ -10,13 +10,19 @@ import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
 import android.os.PersistableBundle
+import android.renderscript.ScriptGroup
 import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
+import android.widget.Button
+import android.widget.EditText
+import android.widget.ImageView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import com.cookandroid.sharemo.databinding.ActivityBottomNavBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import com.google.firebase.storage.FirebaseStorage
@@ -28,6 +34,8 @@ import java.text.MessageFormat.format
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.HashMap
+import kotlinx.android.synthetic.main.activity_write.*
+import kotlin.math.log
 
 
 /*글쓰기 화면*/

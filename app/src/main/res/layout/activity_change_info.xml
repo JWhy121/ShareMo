@@ -91,7 +91,16 @@
             android:layout_height="wrap_content"
             android:layout_row="3"
             android:layout_column="0"
-            android:text="비밀번호"
+            android:text="현재 비밀번호"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="4"
+            android:layout_column="0"
+            android:text="새 비밀번호"
             android:textSize="20dp" />
 
         <EditText
@@ -107,6 +116,9 @@
             android:focusableInTouchMode="false"
             android:gravity="center"
             android:textSize="18sp" />
+            android:focusableInTouchMode="false"
+            android:background="@null"
+            android:singleLine="false" />
 
         <EditText
             android:id="@+id/edt_InfoNickname"
@@ -124,6 +136,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_row="3"
+            android:layout_column="1"
+            android:layout_columnSpan="3"
+            android:layout_gravity="fill_horizontal"
+            android:layout_weight="1"
+            android:inputType="textPassword"
+            android:singleLine="true" />
+
+        <EditText
+            android:id="@+id/edt_ChangePwd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_row="4"
             android:layout_column="1"
             android:layout_columnSpan="3"
             android:layout_gravity="fill_horizontal"
@@ -149,10 +173,10 @@
 
     <Button
         android:id="@+id/btn_changeInfo"
-        android:layout_margin="30dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/verylightpurple"
+        android:layout_margin="30dp"
+        android:backgroundTint="@color/verylightpurple"
         android:text="수정하기" />
 
 

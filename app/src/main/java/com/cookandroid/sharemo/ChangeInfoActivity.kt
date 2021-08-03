@@ -8,6 +8,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.EditText
+import android.widget.ImageView
 import androidx.core.app.ActivityCompat
 import com.cookandroid.sharemo.HomeFragment.Companion.TAG
 import com.google.firebase.auth.FirebaseAuth
@@ -81,14 +84,14 @@ class ChangeInfoActivity : AppCompatActivity() {
 
 
         //사용자의 이름 출력(변경 X)
-        mDatabaseRef.addValueEventListener(object : ValueEventListener{
+        mDatabaseRef.addValueEventListener(object : ValueEventListener {
 
             override fun onCancelled(error: DatabaseError) {
 
             }
 
             override fun onDataChange(snapshot: DataSnapshot) {
-                var user : User? = snapshot.getValue(User::class.java)
+                var user: User? = snapshot.getValue(User::class.java)
                 edt_infoName.setText("${user!!.user_name.toString()}")
             }
         })
