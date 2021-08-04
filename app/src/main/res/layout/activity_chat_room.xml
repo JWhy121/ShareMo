@@ -7,8 +7,6 @@
     tools:context=".ChatRoomActivity">
 
 
-
-
     <LinearLayout
         android:id="@+id/l1"
         android:layout_width="match_parent"
@@ -35,15 +33,15 @@
 
         <ImageView
             android:id="@+id/imgBtn_sendMsg"
-            android:layout_width="35dp"
-            android:layout_height="35dp"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
             android:layout_weight="1"
             app:srcCompat="@drawable/message" />
 
         <ImageView
             android:id="@+id/imgBtn_PhoneCall"
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
             android:layout_weight="1"
             android:clickable="true"
             app:srcCompat="@drawable/call" />

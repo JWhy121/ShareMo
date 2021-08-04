@@ -1,8 +1,10 @@
 package com.cookandroid.sharemo
 
 import android.content.Intent
+import android.database.Cursor
 import android.net.Uri
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import android.view.MenuItem
 import android.view.View
@@ -11,6 +13,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.loader.content.CursorLoader
 import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
@@ -34,6 +37,8 @@ class PostActivity : AppCompatActivity() {
     var uriPhoto: Uri? = null
 
     var chatRoomUid : String? = null
+
+
 
 
 
@@ -63,7 +68,7 @@ class PostActivity : AppCompatActivity() {
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("ShareMo")
 
 
-
+        var user_nickname : String = ""
 
 
         var intent : Intent = getIntent()
@@ -80,11 +85,13 @@ class PostActivity : AppCompatActivity() {
         post_price.setText(intent.getStringExtra("PRICE"))
         post_website.setText(intent.getStringExtra("WEBSITE"))
 
-        if (img_url == "") {
+        if(img_url == null){
             img_postImg.setImageResource(R.drawable.user)
-        } else {
-            Glide.with(this).load(img_url).into(img_userImg)
+        }else{
+            Glide.with(applicationContext).load(img_url).into(img_postImg)
         }
+
+
 
         if(mFirebaseAuth!!.currentUser!!.uid == uid){
             btn_startChat.visibility = View.GONE
@@ -100,48 +107,29 @@ class PostActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        btn_startChat.setOnClickListener {
+        mDatabaseRef.child("UserAccount").child("${mFirebaseAuth!!.currentUser!!.uid!!}")
+                .addListenerForSingleValueEvent(object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        //파이어베이스의 데이터를 가져옴
+                        var user: User? = snapshot.getValue(User::class.java)
 
-
-            //////////////////////////////////////////////////
-
-            val databaseReference : DatabaseReference =
-                FirebaseDatabase.getInstance().getReference("ShareMo").child("ChatRooms")
-                    .child("users")
-
-            databaseReference.orderByChild("my_uid")
-                .equalTo("${mFirebaseAuth!!.currentUser!!.uid}").addValueEventListener(object : ValueEventListener{
-                    override fun onCancelled(error: DatabaseError) {
+                        user_nickname = user!!.user_nickname.toString()
+                        Log.d("tatata", "$user_nickname")
 
                     }
-                    override fun onDataChange(snapshot: DataSnapshot) {
-                        for(datasnapshot : DataSnapshot in snapshot.children){
-                            var users : ChatRoomData? = datasnapshot.getValue(ChatRoomData::class.java)
-                            if(users!!.your_uid == uid){
-                                chatRoomUid = datasnapshot.key!!
-                                Log.d("태그","$chatRoomUid")
 
-                            }
-                        }
+                    override fun onCancelled(error: DatabaseError) {
+                        Log.d("Tag", "안됨")
                     }
                 })
 
-            if(chatRoomUid != null){
-                var users = ChatRoomData()
-                users.my_uid = mFirebaseAuth!!.currentUser!!.uid
-                users.your_uid = uid
-                users.roomKey = chatRoomUid
-                mDatabaseRef!!.child("ChatRooms").child("users").push().setValue(users)
-            }else{
-
-            }
 
 
-/*
-            var users = ChatRoomData()
-            users.my_uid = mFirebaseAuth!!.currentUser!!.uid
-            users.your_uid = uid
-            mDatabaseRef!!.child("ChatRooms").child("users").push().setValue(users)*/
+
+        //채팅하기 버튼 클릭
+        btn_startChat.setOnClickListener {
+
+            //////////////////////////////////////////////////
 
 
             var intent = Intent(this, ChatRoomActivity::class.java)
@@ -156,40 +144,18 @@ class PostActivity : AppCompatActivity() {
 
             intent.putExtra("post_uid", uid)
             intent.putExtra("post_nickname", nickname)
-            intent.putExtra("ChatRoomUid", chatRoomUid)
+            intent.putExtra("sender_nickname", user_nickname)
 
             startActivity(intent)
         }
 
         btn_delete.setOnClickListener {
 
-            mDatabaseRef.child("PostData").addChildEventListener(object : ChildEventListener {
-
-                override fun onCancelled(error: DatabaseError) {
-
-                }
-
-                override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
-
-                }
-
-                override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
-                    Log.d("꾹", "${snapshot.key}")
-
-                }
-
-                override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {
-
-                }
-
-                override fun onChildRemoved(snapshot: DataSnapshot) {
-                }
-            })
-
-
         }
 
     }
+
+
 
     //툴바 뒤로가기
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

@@ -9,17 +9,27 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
+import android.widget.ImageView
 import androidx.annotation.Nullable
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.fragment_profile.*
 import org.w3c.dom.Text
+import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.*
 
 
 /*프로필 화면*/
 class ProfileFragment : Fragment(){
+
+    lateinit var mDatabaseRef : DatabaseReference
+    lateinit var mDatabase : FirebaseDatabase
+    lateinit var mFirebaseAuth: FirebaseAuth
+    lateinit var firebaseUser: FirebaseUser
 
     companion object {
         const val TAG : String = "로그"
@@ -94,6 +104,31 @@ class ProfileFragment : Fragment(){
         var btn_changeInfo : Button = view.findViewById(R.id.btn_ChangeInfo)
         var btn_logout : Button = view.findViewById(R.id.btn_Logout)
         var btn_drop : Button = view.findViewById(R.id.btn_Drop)
+        var iv_infoImg : ImageView = view.findViewById(R.id.iv_Prof)
+
+        mFirebaseAuth = FirebaseAuth.getInstance()
+        val mFirebaseUser : FirebaseUser? = mFirebaseAuth?.currentUser
+
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("ShareMo").child("UserAccount").child(mFirebaseUser!!.uid)
+
+        mDatabaseRef.addValueEventListener(object : ValueEventListener {
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                var user: User? = snapshot.getValue(User::class.java)
+                //firebase에서 user 이름 받아오기
+                if(user!!.user_profileImage == null){
+                    iv_infoImg.setImageResource(R.drawable.user)
+                }else{
+                    Glide.with(this@ProfileFragment).load(user!!.user_profileImage).into(iv_infoImg)
+                }
+
+            }
+        })
+
 
         var mFirebaseAuth : FirebaseAuth? = null //파이어베이스 인증
 
@@ -104,8 +139,6 @@ class ProfileFragment : Fragment(){
 
             val intent = Intent(getActivity(), ChangeInfoActivity::class.java)
             startActivity(intent)
-            //다른 액티비티에서 전환할 때
-            //activity?.finish()
         }
 
         //로그아웃 버튼

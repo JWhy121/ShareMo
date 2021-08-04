@@ -63,6 +63,7 @@ class ChatRoomActivity : AppCompatActivity() {
         var intent = getIntent()
         var post_uid : String? = intent.getStringExtra("post_uid")
         var post_nickname = intent.getStringExtra("post_nickname")
+        var sender_nickname = intent.getStringExtra("sender_nickname")
 
         lateinit var postUser_phone : String
 
@@ -127,7 +128,7 @@ class ChatRoomActivity : AppCompatActivity() {
                     .show()
                 edt_message.setText("")
             } else {
-                sendMessage(mFirebaseUser!!.uid, post_uid!!, message, post_nickname!!)
+                sendMessage(mFirebaseUser!!.uid, post_uid!!, message, sender_nickname!!,post_nickname!!)
                 edt_message.setText("") //다시 edit 창 초기화
                 /*topic = "/topics/$post_uid"
                 PushNotification(NotificationData(post_nickname!!, message)
@@ -142,7 +143,8 @@ class ChatRoomActivity : AppCompatActivity() {
         senderUid: String,
         receiverUid: String,
         message: String,
-        postNickname: String
+        sender_nickname: String,
+        receiver_nickname: String
     ){
         var reference : DatabaseReference? = FirebaseDatabase.getInstance().getReference("ShareMo")
 
@@ -150,7 +152,8 @@ class ChatRoomActivity : AppCompatActivity() {
         hashMap.put("senderUid", senderUid)
         hashMap.put("receiverUid", receiverUid)
         hashMap.put("message", message)
-        hashMap.put("receiverNickname", postNickname)
+        hashMap.put("senderNickname", sender_nickname)
+        hashMap.put("receiverNickname", receiver_nickname)
 
         reference!!.child("ChatRooms").child("users").push().setValue(hashMap)
     }
@@ -159,23 +162,6 @@ class ChatRoomActivity : AppCompatActivity() {
         val databaseReference : DatabaseReference =
             FirebaseDatabase.getInstance().getReference("ShareMo").child("ChatRooms")
                 .child("users")
-
-
-        databaseReference.orderByChild("my_uid")
-            .equalTo("${mFirebaseUser!!.uid}").addValueEventListener(object : ValueEventListener{
-                override fun onCancelled(error: DatabaseError) {
-
-                }
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    for(datasnapshot : DataSnapshot in snapshot.children){
-                        var users : ChatRoomData? = datasnapshot.getValue(ChatRoomData::class.java)
-                        if(users!!.your_uid == receiverUid){
-                            chatRoomUid = datasnapshot.key!!
-                            Log.d("태그","$chatRoomUid")
-                        }
-                    }
-                }
-        })
 
         databaseReference.child("$chatRoomUid").addValueEventListener(object : ValueEventListener {
             override fun onCancelled(error: DatabaseError) {

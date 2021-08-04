@@ -1,18 +1,14 @@
 package com.cookandroid.sharemo
 
 import android.content.Context
-import android.content.Intent.getIntent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
@@ -27,6 +23,7 @@ class ChatFragment : Fragment() {
     lateinit var chatLayoutManager : RecyclerView.LayoutManager
 
     lateinit var chatUserList : ArrayList<ChatData>
+    lateinit var list : ArrayList<String>
 
 
 
@@ -80,22 +77,25 @@ class ChatFragment : Fragment() {
         var user : String = mFirebaseUser!!.uid
 
         chatUserList = ArrayList<ChatData>()
-        mDatabaseRef.child("ChatRooms").child("users").addValueEventListener(object : ValueEventListener{
+        list = ArrayList<String>()
+        mDatabaseRef.child("ChatRooms").child("users").orderByChild("receiverUid").equalTo("${mFirebaseUser.uid}")
+                .addValueEventListener(object : ValueEventListener{
             override fun onCancelled(error: DatabaseError) {
 
             }
             override fun onDataChange(snapshot: DataSnapshot) {
-                chatUserList.clear()
+                list.clear()
                 for(datasnapshot : DataSnapshot in snapshot.getChildren()){
                     var userList : ChatData? = datasnapshot.getValue(ChatData::class.java)
                     chatUserList.add(userList!!)
-                    Log.d("삐삐","$chatUserList")
+                    list.add(userList!!.senderNickname!!)
+                    list.toSet().toList()
                 }
                 chatUserAdapter.notifyDataSetChanged()
             }
         })
 
-        chatUserAdapter = ChatUserAdapter(chatUserList, context)
+        chatUserAdapter = ChatUserAdapter(chatUserList, context, list)
         chatRecyclerView.setAdapter(chatUserAdapter)
 
 
