@@ -50,6 +50,7 @@ class ChangeInfoActivity : AppCompatActivity() {
     lateinit var edt_InfoNickname : EditText
     lateinit var edt_infoPwd : EditText
     lateinit var edt_infoPhone : EditText
+    lateinit var edt_changePwd : EditText
     lateinit var btn_changeInfo : Button
     lateinit var iv_infoPhoto : ImageView
     lateinit var tv_addPhoto : TextView
@@ -83,6 +84,7 @@ class ChangeInfoActivity : AppCompatActivity() {
         edt_InfoNickname = findViewById(R.id.edt_InfoNickname)
         edt_infoPwd = findViewById(R.id.edt_InfoPwd)
         edt_infoPhone = findViewById(R.id.edt_InfoPhone)
+        edt_changePwd = findViewById(R.id.edt_ChangePwd)
         iv_infoPhoto = findViewById(R.id.iv_InfoPhoto)
         tv_addPhoto = findViewById(R.id.tv_AddPhoto)
 
@@ -143,12 +145,12 @@ class ChangeInfoActivity : AppCompatActivity() {
                         var str_nickname : String = edt_InfoNickname.text.toString()
                         var str_phone : String = edt_infoPhone.text.toString()
 
-                        mDatabaseRef.child("UserAccount").child("${mFirebaseAuth?.currentUser!!.uid}").addValueEventListener(object : ValueEventListener {
+                        mDatabaseRef.child("UserAccount").child("${mFirebaseAuth?.currentUser!!.uid}")
+                                .addValueEventListener(object : ValueEventListener {
 
                             override fun onCancelled(error: DatabaseError) {
 
                             }
-
                             override fun onDataChange(snapshot: DataSnapshot) {
                                 var user: User? = snapshot.getValue(User::class.java)
 
@@ -164,18 +166,47 @@ class ChangeInfoActivity : AppCompatActivity() {
                                 hashMap.put("user_email",user!!.user_email.toString())
                                 hashMap.put("user_dong",user!!.user_dong.toString())
 
-                                mDatabaseRef.child("UserAccount").child("${mFirebaseAuth?.currentUser!!.uid}").setValue(hashMap)
+                                mDatabaseRef.child("UserAccount")
+                                        .child("${mFirebaseAuth?.currentUser!!.uid}").setValue(hashMap)
 
                             }
                         })
 
                         Toast.makeText(this, "등록완료", Toast.LENGTH_SHORT).show()
                     }
+                }.addOnFailureListener {
+                    var str_nickname : String = edt_InfoNickname.text.toString()
+                    var str_phone : String = edt_infoPhone.text.toString()
+
+                    mDatabaseRef.child("UserAccount").child("${mFirebaseAuth?.currentUser!!.uid}")
+                            .addValueEventListener(object : ValueEventListener {
+
+                                override fun onCancelled(error: DatabaseError) {
+
+                                }
+                                override fun onDataChange(snapshot: DataSnapshot) {
+                                    var user: User? = snapshot.getValue(User::class.java)
+
+                                    str_infoName = user!!.user_name.toString()
+
+                                    val hashMap : HashMap<String, String> = HashMap()
+
+                                    hashMap.put("user_name",str_infoName)
+                                    hashMap.put("user_nickname", str_nickname)
+                                    hashMap.put("user_phone", str_phone)
+                                    hashMap.put("user_uid",user!!.user_uid.toString())
+                                    hashMap.put("user_email",user!!.user_email.toString())
+                                    hashMap.put("user_dong",user!!.user_dong.toString())
+
+                                    mDatabaseRef.child("UserAccount")
+                                            .child("${mFirebaseAuth?.currentUser!!.uid}").setValue(hashMap)
+                                }
+                            })
                 }
             }catch (e : NullPointerException){
+            }finally {
+                changePassword()
             }
-
-            changePassword()
 
             finish()
         }
@@ -201,13 +232,13 @@ class ChangeInfoActivity : AppCompatActivity() {
         if (edt_infoPwd.text.isNotEmpty()) {
             val user: FirebaseUser? = mFirebaseAuth!!.currentUser
             val credential = EmailAuthProvider
-                    .getCredential(user!!.email!!, "yeonji")
+                    .getCredential(user!!.email!!, edt_infoPwd.text.toString())
 // Prompt the user to re-provide their sign-in credentials
             user.reauthenticate(credential)
                     .addOnCompleteListener {
                         if (it.isSuccessful) {
                             Toast.makeText(this, "비밀번호가 변경되었습니다. ", Toast.LENGTH_SHORT).show()
-                            user?.updatePassword(edt_infoPwd.text.toString())
+                            user?.updatePassword(edt_changePwd.text.toString())
                                     ?.addOnCompleteListener { task ->
                                         if (task.isSuccessful) {
                                             Toast.makeText(this, "비밀번호 수정 완료", Toast.LENGTH_SHORT).show()

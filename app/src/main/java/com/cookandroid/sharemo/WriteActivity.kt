@@ -179,10 +179,34 @@ class WriteActivity : AppCompatActivity() {
                         finish()
                     }
                 }.addOnFailureListener {
-                    Toast.makeText(this, "이미지 선택 X", Toast.LENGTH_SHORT).show();
+
+                    val hashMap : HashMap<String, String> = HashMap()
+
+                    var str_content: String = edt_content.text.toString()
+                    var str_price = edt_price.text.toString()
+                    var str_website: String = edt_website.text.toString()
+                    var selectedItem: String = select_spinner!!.getSelectedItem().toString()
+
+                    hashMap.put("uid", mFirebaseAuth!!.currentUser!!.uid)
+                    hashMap.put("content", str_content)
+                    hashMap.put("nickname", nickname)
+                    hashMap.put("price", str_price)
+                    hashMap.put("dong", dong)
+                    hashMap.put("website", str_website)
+                    hashMap.put("item", selectedItem)
+                    hashMap.put("timstamp", timestamp)
+
+                    mDatabaseRef.ref.child("PostData").child("${selectedItem}").push().setValue(hashMap)
+
+                    Toast.makeText(this, "등록완료", Toast.LENGTH_SHORT).show()
+                    var intent = Intent(this, ShareListActivity::class.java)
+                    intent.putExtra("SELECTED_ITEM", selectedItem)
+                    startActivity(intent)
+                    finish()
+
                 }
             }catch (e : NullPointerException){
-                Toast.makeText(this, "이미지 선택 X", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "이미지 선택 안함", Toast.LENGTH_SHORT).show();
             }
         }
 
