@@ -92,7 +92,13 @@ class ChangeInfoActivity : AppCompatActivity() {
 
             override fun onDataChange(snapshot: DataSnapshot) {
                 var user: User? = snapshot.getValue(User::class.java)
+                //firebase에서 user 이름 받아오기
                 edt_infoName.setText("${user!!.user_name.toString()}")
+                //firebase에서 user 닉네임 받아오기
+                edt_InfoNickname.setText("${user!!.user_nickname.toString()}")
+                //firebase에서 user 전화번호 받아오기
+                edt_infoPhone.setText("${user!!.user_phone.toString()}")
+
             }
         })
 

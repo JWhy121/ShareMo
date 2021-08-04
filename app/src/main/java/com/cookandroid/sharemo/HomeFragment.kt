@@ -59,7 +59,7 @@ class HomeFragment : Fragment() {
         imgBtn_glocery.setOnClickListener {
 
             val intent = Intent(getActivity(), ShareListActivity::class.java)
-            intent.putExtra("SELECTED_ITEM","생필품/음식")
+            intent.putExtra("SELECTED_ITEM","생필품or음식")
             startActivity(intent)
         }
 

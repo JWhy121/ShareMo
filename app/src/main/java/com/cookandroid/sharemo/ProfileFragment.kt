@@ -8,10 +8,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.TextView
 import androidx.annotation.Nullable
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.fragment_profile.*
+import org.w3c.dom.Text
 
 
 /*프로필 화면*/
@@ -24,12 +28,47 @@ class ProfileFragment : Fragment(){
             return ProfileFragment()
         }
 
+
+        //닉네임과 동네 프로필
+
+        private var mFirebaseAuth : FirebaseAuth? = null //파이어베이스 인증
+        private lateinit var mDatabaseRef : DatabaseReference //실시간 데이터베이스
+
+
+        //닉네임 받아오기
+        lateinit var tv_nickname : TextView
+        lateinit var tv_dong : TextView
+
+
+
+
     }
 
     // 메모리에 올라갔을때
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.d(TAG, "ProfileFragment - onCreate() called")
+
+        //닉네임, 동네 받아오기
+        mFirebaseAuth = FirebaseAuth.getInstance()
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("ShareMo").child("UserAccount").child("${mFirebaseAuth?.currentUser!!.uid}")
+
+        mDatabaseRef.addValueEventListener(object : ValueEventListener {
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+                var user: User? = snapshot.getValue(User::class.java)
+                //firebase에서 user 닉네임 받아오기
+                tv_NickName.setText("${user!!.user_nickname.toString()}")
+                //firebase에서 user 전화번호 받아오기
+                tv_Dong.setText("${user!!.user_dong.toString()}")
+
+            }
+        })
+
 
     }
 
