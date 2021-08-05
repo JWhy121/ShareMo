@@ -11,7 +11,7 @@ import android.widget.ImageView
 import androidx.fragment.app.Fragment
 
 
-/*홈 화면*/
+/*홈 화면 프래그먼트*/
 class HomeFragment : Fragment() {
 
 
@@ -56,30 +56,32 @@ class HomeFragment : Fragment() {
         var imgBtn_car : ImageView = view.findViewById(R.id.imgBtn_Car)
         var imgBtn_etc : ImageView = view.findViewById(R.id.imgBtn_Etc)
 
+        /*각 아이콘을 누르면 해당 글을 보여주기 위해 intent로 카테고리 이름을 지정해서 보내고 PostListActivity가
+        받아서 글 목록 출력*/
         imgBtn_glocery.setOnClickListener {
 
-            val intent = Intent(getActivity(), ShareListActivity::class.java)
+            val intent = Intent(getActivity(), PostListActivity::class.java)
             intent.putExtra("SELECTED_ITEM","생필품or음식")
             startActivity(intent)
         }
 
         imgBtn_talent.setOnClickListener {
 
-            val intent = Intent(getActivity(), ShareListActivity::class.java)
+            val intent = Intent(getActivity(), PostListActivity::class.java)
             intent.putExtra("SELECTED_ITEM","재능")
             startActivity(intent)
         }
 
         imgBtn_car.setOnClickListener {
 
-            val intent = Intent(getActivity(), ShareListActivity::class.java)
+            val intent = Intent(getActivity(), PostListActivity::class.java)
             intent.putExtra("SELECTED_ITEM","이동수단")
             startActivity(intent)
         }
 
         imgBtn_etc.setOnClickListener {
 
-            val intent = Intent(getActivity(), ShareListActivity::class.java)
+            val intent = Intent(getActivity(), PostListActivity::class.java)
             intent.putExtra("SELECTED_ITEM","기타")
            startActivity(intent)
         }

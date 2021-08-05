@@ -114,11 +114,7 @@
             android:layout_weight="1"
             android:editable="false"
             android:focusableInTouchMode="false"
-            android:gravity="center"
             android:textSize="18sp" />
-            android:focusableInTouchMode="false"
-            android:background="@null"
-            android:singleLine="false" />
 
         <EditText
             android:id="@+id/edt_InfoNickname"
@@ -129,6 +125,8 @@
             android:layout_columnSpan="3"
             android:layout_gravity="fill_horizontal"
             android:layout_weight="1"
+            android:editable="false"
+            android:focusableInTouchMode="false"
             android:singleLine="true" />
 
         <EditText

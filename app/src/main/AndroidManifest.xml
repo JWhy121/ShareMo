@@ -28,7 +28,7 @@
         <activity
             android:name=".BottomNavActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
-        <activity android:name=".ShareListActivity"></activity>
+        <activity android:name=".PostListActivity"></activity>
         <activity
             android:name=".WriteActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar">
@@ -39,7 +39,7 @@
             android:name=".RegisterActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
         <activity
-            android:name=".MainActivity"
+            android:name=".LoginActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
     </application>
 

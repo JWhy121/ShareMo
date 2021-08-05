@@ -10,26 +10,22 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.TextView
 import android.widget.ImageView
-import androidx.annotation.Nullable
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.Glide.*
+import com.bumptech.glide.request.RequestOptions
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 import kotlinx.android.synthetic.main.fragment_profile.*
-import org.w3c.dom.Text
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.activity_bottom_nav.*
 
 
 /*프로필 화면*/
 class ProfileFragment : Fragment(){
 
     lateinit var mDatabaseRef : DatabaseReference
-    lateinit var mDatabase : FirebaseDatabase
     lateinit var mFirebaseAuth: FirebaseAuth
-    lateinit var firebaseUser: FirebaseUser
 
     companion object {
         const val TAG : String = "로그"
@@ -38,47 +34,12 @@ class ProfileFragment : Fragment(){
             return ProfileFragment()
         }
 
-
-        //닉네임과 동네 프로필
-
-        private var mFirebaseAuth : FirebaseAuth? = null //파이어베이스 인증
-        private lateinit var mDatabaseRef : DatabaseReference //실시간 데이터베이스
-
-
-        //닉네임 받아오기
-        lateinit var tv_nickname : TextView
-        lateinit var tv_dong : TextView
-
-
-
-
     }
 
     // 메모리에 올라갔을때
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.d(TAG, "ProfileFragment - onCreate() called")
-
-        //닉네임, 동네 받아오기
-        mFirebaseAuth = FirebaseAuth.getInstance()
-        mDatabaseRef = FirebaseDatabase.getInstance().getReference("ShareMo").child("UserAccount").child("${mFirebaseAuth?.currentUser!!.uid}")
-
-        mDatabaseRef.addValueEventListener(object : ValueEventListener {
-
-            override fun onCancelled(error: DatabaseError) {
-
-            }
-
-            override fun onDataChange(snapshot: DataSnapshot) {
-                var user: User? = snapshot.getValue(User::class.java)
-                //firebase에서 user 닉네임 받아오기
-                tv_NickName.setText("${user!!.user_nickname.toString()}")
-                //firebase에서 user 전화번호 받아오기
-                tv_Dong.setText("${user!!.user_dong.toString()}")
-
-            }
-        })
-
 
     }
 
@@ -105,12 +66,17 @@ class ProfileFragment : Fragment(){
         var btn_logout : Button = view.findViewById(R.id.btn_Logout)
         var btn_drop : Button = view.findViewById(R.id.btn_Drop)
         var iv_infoImg : ImageView = view.findViewById(R.id.iv_Prof)
+        //닉네임 받아오기
+        var tv_nickname : TextView = view.findViewById(R.id.tv_NickName)
+        var tv_dong : TextView = view.findViewById(R.id.tv_Dong)
 
         mFirebaseAuth = FirebaseAuth.getInstance()
         val mFirebaseUser : FirebaseUser? = mFirebaseAuth?.currentUser
 
-        mDatabaseRef = FirebaseDatabase.getInstance().getReference("ShareMo").child("UserAccount").child(mFirebaseUser!!.uid)
+        mDatabaseRef = FirebaseDatabase.getInstance().getReference("ShareMo")
+                .child("UserAccount").child(mFirebaseUser!!.uid)
 
+        //화면에 사용자 프로필 이미지, 닉네임, 동네 출력
         mDatabaseRef.addValueEventListener(object : ValueEventListener {
 
             override fun onCancelled(error: DatabaseError) {
@@ -119,13 +85,20 @@ class ProfileFragment : Fragment(){
 
             override fun onDataChange(snapshot: DataSnapshot) {
                 var user: User? = snapshot.getValue(User::class.java)
-                //firebase에서 user 이름 받아오기
-                if(user!!.user_profileImage == null){
+
+                tv_nickname.setText("${user!!.user_nickname.toString()}")
+
+                tv_dong.setText("${user!!.user_dong.toString()}")
+
+                if(user!!.user_profileImage.equals("")){
                     iv_infoImg.setImageResource(R.drawable.user)
                 }else{
-                    Glide.with(this@ProfileFragment).load(user!!.user_profileImage).into(iv_infoImg)
+                    var cropOptions : RequestOptions = RequestOptions()
+                    with(this@ProfileFragment)
+                            .load(user!!.user_profileImage)
+                            .apply(cropOptions.optionalCircleCrop())
+                            .into(iv_infoImg)
                 }
-
             }
         })
 
@@ -145,7 +118,7 @@ class ProfileFragment : Fragment(){
         btn_logout.setOnClickListener {
 
             mFirebaseAuth!!.signOut()
-            val intent = Intent(getActivity(), MainActivity::class.java)
+            val intent = Intent(getActivity(), LoginActivity::class.java)
             startActivity(intent)
         }
 
@@ -153,7 +126,7 @@ class ProfileFragment : Fragment(){
         btn_drop.setOnClickListener {
 
             mFirebaseAuth!!.currentUser!!.delete()
-            val intent = Intent(getActivity(), MainActivity::class.java)
+            val intent = Intent(getActivity(), LoginActivity::class.java)
             startActivity(intent)
         }
 

@@ -25,9 +25,9 @@
         android:layout_width="100dp"
         android:layout_height="48dp"
         android:layout_marginTop="80dp"
-        android:layout_marginEnd="70dp"
+        android:layout_marginEnd="36dp"
+        android:backgroundTint="@color/purple"
         android:text="가입하기"
-        android:backgroundTint="@color/lightpurple"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edt_Nickname" />
 
@@ -60,6 +60,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
+        android:clickable="false"
         android:ems="10"
         android:hint="(6자 이상)"
         android:inputType="textPassword"
@@ -114,14 +115,26 @@
         app:layout_constraintTop_toBottomOf="@+id/edt_Name" />
 
     <Button
-        android:id="@+id/btn_Confirm"
+        android:id="@+id/btn_ConfirmID"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="212dp"
+        android:layout_marginTop="208dp"
         android:layout_marginEnd="4dp"
         android:text="중복확인"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.684"
+        app:layout_constraintHorizontal_bias="0.625"
+        app:layout_constraintStart_toEndOf="@+id/edt_Email"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btn_ConfirmNickname"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="452dp"
+        android:layout_marginEnd="4dp"
+        android:text="중복확인"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.625"
         app:layout_constraintStart_toEndOf="@+id/edt_Email"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -167,10 +180,21 @@
         android:id="@+id/btn_Back"
         android:layout_width="100dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="70dp"
+        android:layout_marginStart="36dp"
         android:layout_marginTop="80dp"
-        android:text="취소"
         android:backgroundTint="@color/verylightpurple"
+        android:text="취소"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edt_Nickname" />
+
+    <Button
+        android:id="@+id/btn_Reset"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:backgroundTint="@color/lightpurple"
+        android:text="재설정"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/edt_Nickname" />
 
@@ -193,6 +217,7 @@
         android:layout_marginEnd="20dp"
         android:textAlignment="center"
         app:layout_constraintEnd_toStartOf="@+id/spn_Prov"
+        app:layout_constraintStart_toEndOf="@+id/textView12"
         app:layout_constraintTop_toBottomOf="@+id/edt_Nickname" />
 
     <Spinner
@@ -202,6 +227,7 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="20dp"
         app:layout_constraintEnd_toStartOf="@+id/spn_Dong"
+        app:layout_constraintStart_toEndOf="@+id/spn_City"
         app:layout_constraintTop_toBottomOf="@+id/edt_Nickname" />
 
     <Spinner
@@ -211,6 +237,7 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/spn_Prov"
         app:layout_constraintTop_toBottomOf="@+id/edt_Nickname" />
 
 

@@ -28,25 +28,26 @@
             android:scaleType="fitCenter"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/user" />
+            app:srcCompat="@drawable/null_image" />
 
         <TextView
             android:id="@+id/tv_Dong"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@color/verylightpurple"
             android:layout_marginStart="4dp"
             android:layout_marginTop="4dp"
+            android:background="@color/verylightpurple"
             android:text="동네"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tv_Content"
-            android:layout_width="312dp"
-            android:layout_height="51dp"
+            android:layout_width="292dp"
+            android:layout_height="41dp"
             android:layout_marginStart="4dp"
             android:layout_marginTop="4dp"
+            android:scrollHorizontally="true"
             android:text="내용"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_Dong" />
@@ -64,14 +65,27 @@
 
         <TextView
             android:id="@+id/tv_Price"
-            android:layout_width="wrap_content"
+            android:layout_width="70dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="20dp"
             android:text="가격"
+            android:textAlignment="textEnd"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="@+id/iv_Image"
-            app:layout_constraintTop_toBottomOf="@+id/iv_Image" />
+            app:layout_constraintTop_toBottomOf="@+id/iv_Image"
+            app:layout_constraintVertical_bias="0.4" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="6dp"
+            android:text="원"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

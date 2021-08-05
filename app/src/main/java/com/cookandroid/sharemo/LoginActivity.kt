@@ -11,19 +11,23 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 
 
-/*로그인 화면*/
-class MainActivity : AppCompatActivity() {
+/*로그인 화면 액티비티*/
+class LoginActivity : AppCompatActivity() {
 
-    private var mFirebaseAuth : FirebaseAuth? = null //파이어베이스 인증
-    private lateinit var mDatabaseRef : DatabaseReference //실시간 데이터베이스
+    //파이어베이스
+    private var mFirebaseAuth : FirebaseAuth? = null
+    private lateinit var mDatabaseRef : DatabaseReference
+
+    //위젯 연결할 변수 선언
     lateinit var edtEmail : EditText
     lateinit var edtPwd : EditText
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
+        setContentView(R.layout.activity_login)
 
+        //파이어베이스에서 인스턴스 가져오기
         mFirebaseAuth = FirebaseAuth.getInstance()
         mDatabaseRef = FirebaseDatabase.getInstance().getReference()
 
@@ -31,7 +35,9 @@ class MainActivity : AppCompatActivity() {
         edtPwd = findViewById(R.id.edt_Pwd)
 
         var btnLogin : Button = findViewById(R.id.btn_Login)
+        var btnRegister : Button = findViewById(R.id.btn_Register)
 
+        //로그인 버튼 : 두 정보 모두 입력하지 않으면 모두 입력하라는 Toast 메시지, 회원정보가 일치하면 로그인 성공
         btnLogin.setOnClickListener {
 
             if(edtEmail.text.toString().equals("") || edtPwd.text.toString().equals("")) {
@@ -50,7 +56,7 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        var btnRegister : Button = findViewById(R.id.btn_Register)
+        //회원가입 페이지로 연결하는 버튼
         btnRegister.setOnClickListener {
 
             val intent = Intent(this, RegisterActivity::class.java)

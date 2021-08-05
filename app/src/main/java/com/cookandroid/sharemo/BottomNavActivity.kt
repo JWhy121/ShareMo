@@ -5,12 +5,15 @@ import android.os.Bundle
 import android.util.Log
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
+
+/*네비게이션 바 액티비티*/
 class BottomNavActivity : AppCompatActivity() {
 
     private lateinit var homeFragment: HomeFragment
     private lateinit var chatFragment: ChatFragment
     private lateinit var profileFragment: ProfileFragment
 
+    //위젯 연결 변수 선언
     lateinit var bottom_nav : BottomNavigationView
 
     companion object {

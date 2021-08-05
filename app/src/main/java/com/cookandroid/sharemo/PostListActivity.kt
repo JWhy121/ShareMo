@@ -1,6 +1,5 @@
 package com.cookandroid.sharemo
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
@@ -17,30 +16,29 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.firebase.ui.database.FirebaseRecyclerAdapter
 import com.google.firebase.database.*
-import com.squareup.picasso.Picasso
-import kotlinx.android.synthetic.main.list_item.view.*
 
 
 /*게시글 리스트 화면*/
-class ShareListActivity : AppCompatActivity() {
+class PostListActivity : AppCompatActivity() {
 
+    //위젯 연결할 변수 선언
     lateinit var mSearchText: EditText
     lateinit var rv_post : RecyclerView
     lateinit var adapter : RecyclerView.Adapter<PostDataAdapter.CustomViewHolder>
     lateinit var layoutManager: RecyclerView.LayoutManager
     lateinit var arrayList: ArrayList<PostData>
+    lateinit var imgBtn_eidt : ImageView
 
-    lateinit var FirebaseRecyclerAdapter : FirebaseRecyclerAdapter<PostData , UsersViewHolder>
 
-
+    //파이어베이스
     private lateinit var database : FirebaseDatabase
     private lateinit var mDatabaseRef : DatabaseReference
 
-    lateinit var imgBtn_eidt : ImageView
+    lateinit var SearchContentRecyclerAdapter : FirebaseRecyclerAdapter<PostData , UsersViewHolder>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_share_list)
+        setContentView(R.layout.activity_post_list)
 
         //툴바 사용
         setSupportActionBar(findViewById(R.id.toolbar))
@@ -48,7 +46,8 @@ class ShareListActivity : AppCompatActivity() {
         ab.setDisplayShowTitleEnabled(false)
         ab.setDisplayHomeAsUpEnabled(true)
 
-        rv_post = findViewById(R.id.rv_Post) //아이디 연결
+        //아이디 연결
+        rv_post = findViewById(R.id.rv_Post)
         imgBtn_eidt = findViewById(R.id.imgBtn_Edit)
         mSearchText = findViewById(R.id.edt_SearchText)
 
@@ -61,31 +60,33 @@ class ShareListActivity : AppCompatActivity() {
         database = FirebaseDatabase.getInstance() //파이어베이스 데이터베이스 연동
         mDatabaseRef = FirebaseDatabase.getInstance().getReference("ShareMo")
 
+
+        //HomeFragment에서 보낸 값 intent로 받아옴
         var intent : Intent = getIntent()
 
         var selectedItem : String? = intent.getStringExtra("SELECTED_ITEM")
 
 
+        //리사이클러뷰에 담을 데이터 가져오기(selectedItem 태그를 통해서 보여줄 게시글 구분)
         mDatabaseRef.child("PostData").child("$selectedItem")
-            .orderByChild("timestamp").addValueEventListener(object : ValueEventListener {
-            override fun onDataChange(snapshot: DataSnapshot) {
-                //파이어베이스의 데이터를 가져옴
-                arrayList.clear()
+                .orderByChild("timestamp").addValueEventListener(object : ValueEventListener {
+                    override fun onDataChange(snapshot: DataSnapshot) {
+                        arrayList.clear()
 
-                for (data : DataSnapshot in snapshot.getChildren()) {
-                    var postData : PostData? = data.getValue(PostData::class.java)
+                        for (data : DataSnapshot in snapshot.getChildren()) {
+                            var postData : PostData? = data.getValue(PostData::class.java)
 
-                    arrayList.add(postData!!) //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼 준비
+                            arrayList.add(postData!!) //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼 준비
 
-                    Log.d("태그", "$arrayList")
-                }
-                adapter.notifyDataSetChanged() //리스트 저장 및 새로고침
+                            Log.d("태그", "$arrayList")
+                        }
+                        adapter.notifyDataSetChanged() //리스트 저장 및 새로고침
 
-            }
+                    }
 
-            override fun onCancelled(error: DatabaseError) {
-            }
-        })
+                    override fun onCancelled(error: DatabaseError) {
+                    }
+                })
 
         adapter = PostDataAdapter(arrayList, this)
         rv_post.setAdapter(adapter)
@@ -96,6 +97,7 @@ class ShareListActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        //검색 editText창에 텍스트 변화를 감지하는 리스너 연결
         mSearchText.addTextChangedListener(object  : TextWatcher {
             override fun afterTextChanged(p0: Editable?) {
 
@@ -108,19 +110,17 @@ class ShareListActivity : AppCompatActivity() {
 
                 val searchText = mSearchText.getText().toString().trim()
 
-                loadFirebaseData(searchText)
+                searchContentData(searchText)
+
             }
         } )
-
     }
-
-
-    //검색한 데이터 띄우기
-    private fun loadFirebaseData(searchText : String) {
+    //검색한 데이터 띄우기(내용 검색)
+    private fun searchContentData(searchText : String) {
 
         if(searchText.isEmpty()){
 
-            FirebaseRecyclerAdapter.cleanup()
+            SearchContentRecyclerAdapter.cleanup()
 
             rv_post.setAdapter(adapter)
 
@@ -134,7 +134,7 @@ class ShareListActivity : AppCompatActivity() {
 
             val firebaseSearchQuery = mDatabaseRef.child("PostData").child("$selectedItem").orderByChild("content").startAt(searchText).endAt(searchText + "\uf8ff")
 
-            FirebaseRecyclerAdapter = object : FirebaseRecyclerAdapter<PostData, UsersViewHolder>(
+            SearchContentRecyclerAdapter = object : FirebaseRecyclerAdapter<PostData, UsersViewHolder>(
                     PostData::class.java,
                     R.layout.list_item,
                     UsersViewHolder::class.java,
@@ -147,11 +147,11 @@ class ShareListActivity : AppCompatActivity() {
                     viewHolder!!.price.text = model?.price
                     viewHolder!!.nickname.text = model?.nickname
                     Glide.with(viewHolder!!.itemView)
-                        .load(model?.imgUrl)
-                        .into(viewHolder!!.iv_img)
+                            .load(model?.imgUrl)
+                            .into(viewHolder!!.iv_img)
                 }
             }
-            rv_post.setAdapter(FirebaseRecyclerAdapter)
+            rv_post.setAdapter(SearchContentRecyclerAdapter)
         }
     }
 

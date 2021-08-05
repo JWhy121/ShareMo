@@ -27,24 +27,24 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/img_PostImg"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="170dp"
+            android:layout_height="170dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:scaleType="fitCenter"
-            app:layout_constraintBottom_toTopOf="@+id/img_UserImg"
+            app:layout_constraintBottom_toTopOf="@+id/img_postProfileImg"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.537"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@drawable/user" />
+            tools:srcCompat="@drawable/null_image" />
 
         <ImageView
-            android:id="@+id/img_UserImg"
+            android:id="@+id/img_postProfileImg"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="16dp"
@@ -65,8 +65,8 @@
             android:text="닉네임"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/img_UserImg"
-            app:layout_constraintTop_toTopOf="@+id/img_UserImg" />
+            app:layout_constraintStart_toEndOf="@+id/img_postProfileImg"
+            app:layout_constraintTop_toTopOf="@+id/img_postProfileImg" />
 
         <TextView
             android:id="@+id/post_Dong"
@@ -74,8 +74,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="48dp"
             android:layout_marginEnd="52dp"
-            android:text="동네"
             android:background="@color/lightpurple"
+            android:text="동네"
             android:textSize="18sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/img_PostImg" />
@@ -113,26 +113,14 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btn_Website" />
 
-        <Button
-            android:id="@+id/btn_Delete"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginBottom="5dp"
-            android:background="@color/lightpurple"
-            android:text="삭제"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_Website" />
-
         <TextView
             android:id="@+id/post_Website"
             android:layout_width="280dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
             android:layout_marginTop="60dp"
-            android:text="웹사이트"
+            android:maxLines="1"
+            android:singleLine="true"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/post_Content" />
 

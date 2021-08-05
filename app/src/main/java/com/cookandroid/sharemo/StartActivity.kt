@@ -12,7 +12,7 @@ class StartActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_start)
 
-        var intent = Intent(this, MainActivity::class.java)
+        var intent = Intent(this, LoginActivity::class.java)
         //2초 뒤 MainActivity로 가기
         Handler().postDelayed({ startActivity(intent) }, 2000L)
 

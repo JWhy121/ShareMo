@@ -13,15 +13,19 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.database.*
 
+/*채팅 목록 화면 프래그먼트*/
 class ChatFragment : Fragment() {
 
+    //파이어베이스
     lateinit var mDatabaseRef : DatabaseReference
     lateinit var mDatabase : FirebaseDatabase
     lateinit var firebaseAuth: FirebaseAuth
-    lateinit var firebaseUser: FirebaseUser
+
+    //위젯 연결 변수 선언
     lateinit var chatUserAdapter : RecyclerView.Adapter<ChatUserAdapter.ViewHolder>
     lateinit var chatLayoutManager : RecyclerView.LayoutManager
 
+    //채팅 목록 리스트와 구분해서 보여줄 리스트 선언
     lateinit var chatUserList : ArrayList<ChatData>
     lateinit var list : ArrayList<String>
 
@@ -49,7 +53,7 @@ class ChatFragment : Fragment() {
     }
 
     // 뷰가 생성되었을 때
-    // 프레그먼트와 레이아웃을 연결시켜주는 부분이다.
+    // 프레그먼트와 레이아웃을 연결시켜주는 부분
     override fun onCreateView(
             inflater: LayoutInflater,
             container: ViewGroup?,
@@ -62,8 +66,7 @@ class ChatFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_chat, container, false)
         var chatRecyclerView : RecyclerView = view.findViewById(R.id.rv_Post)
 
-
-
+        //리싸이클러뷰에 어댑터 연결
         var context : Context = view.context
         chatRecyclerView = view as RecyclerView
         chatRecyclerView.setHasFixedSize(true)
@@ -78,6 +81,9 @@ class ChatFragment : Fragment() {
 
         chatUserList = ArrayList<ChatData>()
         list = ArrayList<String>()
+
+        /*파이어베이스 ChatRooms에서 유저 receiverUid가 현재 사용자인 부분을 가져와서 senderUid를 중복 제거해서
+        출력되도록 함 (저장되어 있는 데이터에서 receiverUid가 현재 사용자여야 내 채팅 화면에 상대방 uid(senderUid)가 보이게 됨)*/
         mDatabaseRef.child("ChatRooms").child("users").orderByChild("receiverUid").equalTo("${mFirebaseUser.uid}")
                 .addValueEventListener(object : ValueEventListener{
             override fun onCancelled(error: DatabaseError) {
@@ -95,49 +101,9 @@ class ChatFragment : Fragment() {
             }
         })
 
+        //리싸이클러뷰에 어댑터 연결
         chatUserAdapter = ChatUserAdapter(chatUserList, context, list)
         chatRecyclerView.setAdapter(chatUserAdapter)
-
-
- /*       if(view is RecyclerView){
-            var context : Context = view.context
-            chatRecyclerView = view
-            chatRecyclerView.setHasFixedSize(true)
-
-
-            Log.d("태그", "1")
-            chatLayoutManager = LinearLayoutManager(context)
-            Log.d("태그", "2")
-            chatRecyclerView.setLayoutManager(chatLayoutManager)
-            Log.d("태그", "3")
-
-            mDatabaseRef = FirebaseDatabase.getInstance().getReference("ShareMo")
-            Log.d("태그", "${mDatabaseRef.child("ChatRooms").child("users").key.toString()}")
-
-            //val firebaseSearchQuery = mDatabaseRef.child("PostData").child("$selectedItem").orderByChild("content").startAt(searchText).endAt(searchText + "\uf8ff")
-            mDatabaseRef.child("ChatRooms").child("users").addValueEventListener(object : ValueEventListener {
-                override fun onDataChange(snapshot: DataSnapshot) {
-                    //파이어베이스의 데이터를 가져옴
-                    chatUserList.clear()
-
-                    for (data : DataSnapshot in snapshot.children) {
-                        var user : ChatData? = data.getValue(ChatData::class.java)
-
-                        chatUserList.add(user!!) //담은 데이터들을 배열리스트에 넣고 리사이클러뷰로 보낼 준비
-
-                        Log.d("태그", "$chatUserList")
-                    }
-                    chatUserAdapter.notifyDataSetChanged() //리스트 저장 및 새로고침
-
-                }
-
-                override fun onCancelled(error: DatabaseError) {
-                }
-            })
-
-            chatUserAdapter = ChatUserAdapter(chatUserList, context)
-            chatRecyclerView.setAdapter(chatUserAdapter)
-        }*/
 
         return view
     }

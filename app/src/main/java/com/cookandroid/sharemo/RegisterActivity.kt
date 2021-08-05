@@ -4,11 +4,10 @@ import android.os.Bundle
 import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
-import com.cookandroid.sharemo.databinding.ActivityMainBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
-import com.google.firebase.database.DatabaseReference
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
+import java.util.regex.Pattern
 
 /*회원 가입 화면*/
 class RegisterActivity : AppCompatActivity() {
@@ -16,6 +15,7 @@ class RegisterActivity : AppCompatActivity() {
     private var mFirebaseAuth : FirebaseAuth? = null //파이어베이스 인증
     private lateinit var mDatabaseRef : DatabaseReference //실시간 데이터베이스
 
+    //위젯 연결할 변수 선언
     lateinit var edt_email : EditText
     lateinit var edt_pwd : EditText
     lateinit var edt_name : EditText
@@ -24,14 +24,14 @@ class RegisterActivity : AppCompatActivity() {
 
     lateinit var btn_register : Button
     lateinit var btn_back : Button
-    lateinit var btn_confirm : Button
+    lateinit var btn_confirmId : Button
+    lateinit var btn_confirmNickname : Button
+    lateinit var btn_reset : Button
 
     private var spinnerCity: Spinner? = null
     private  var spinnerSigungu:Spinner? = null
     private  var spinnerDong:Spinner? = null
     private var arrayAdapter: ArrayAdapter<String>? = null
-    val EXTRA_ADDRESS = "address"
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -40,7 +40,7 @@ class RegisterActivity : AppCompatActivity() {
 
         mFirebaseAuth = FirebaseAuth.getInstance()
 
-
+        //위젯 연결
         edt_email = findViewById(R.id.edt_Email)
         edt_pwd = findViewById(R.id.edt_Pwd)
         edt_name = findViewById(R.id.edt_Name)
@@ -49,46 +49,117 @@ class RegisterActivity : AppCompatActivity() {
 
         btn_register = findViewById(R.id.btn_Register)
         btn_back = findViewById(R.id.btn_Back)
-        btn_confirm = findViewById(R.id.btn_Confirm)
+        btn_confirmId = findViewById(R.id.btn_ConfirmID)
+        btn_confirmNickname = findViewById(R.id.btn_ConfirmNickname)
+        btn_reset = findViewById(R.id.btn_Reset)
 
         spinnerCity = findViewById<Spinner>(R.id.spn_City)
-        arrayAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, resources.getStringArray(R.array.spinner_region) as Array<String>)
-        arrayAdapter!!.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
-        spinnerCity!!.setAdapter(arrayAdapter)
 
         spinnerSigungu = findViewById<Spinner>(R.id.spn_Prov)
         spinnerDong = findViewById<Spinner>(R.id.spn_Dong)
 
+        //동네 스피너 어댑터 설정
+        arrayAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_item, resources.getStringArray(R.array.spinner_region) as Array<String>)
+        arrayAdapter!!.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
+        spinnerCity!!.setAdapter(arrayAdapter)
+
+        var pattern : Pattern = android.util.Patterns.EMAIL_ADDRESS
+
         initAddressSpinner()
 
+        //처음에는 이메일 입력창 제외하고 모두 입력 불가능하게 설정
+        edt_pwd.isEnabled = false
+        edt_name.isEnabled = false
+        edt_phone.isEnabled = false
+        edt_nickname.isEnabled = false
+        btn_register.isEnabled = false
 
+        //이메일 중복 확인 버튼
+        btn_confirmId.setOnClickListener {
+            mDatabaseRef = FirebaseDatabase.getInstance().getReference("ShareMo").child("UserAccount")
+            mDatabaseRef.orderByChild("user_email").equalTo("${edt_email.text.toString()}")
+                    .addListenerForSingleValueEvent(object : ValueEventListener{
+                override fun onCancelled(error: DatabaseError) {
 
+                }
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    var value = snapshot.getValue()
+                    if(!pattern.matcher(edt_email.text.toString()).matches()){
+                        Toast.makeText(this@RegisterActivity,"이메일 형식으로 입력하세요",Toast.LENGTH_SHORT).show()
+                    }else if(value != null){
+                        Toast.makeText(this@RegisterActivity,"이미 가입되어 있는 아이디입니다",Toast.LENGTH_SHORT).show()
+                    }else{
+                        //가입 가능한 아이디이면 이메일 입력 창 비활성화 후 나머지 창 활성화
+                        Toast.makeText(this@RegisterActivity,"사용 가능한 아이디입니다",Toast.LENGTH_SHORT).show()
+                        edt_email.isEnabled = false
+                        edt_pwd.isEnabled = true
+                        edt_name.isEnabled = true
+                        edt_phone.isEnabled = true
+                        edt_nickname.isEnabled = true
+                    }
+                }
+            })
+        }
 
+        //닉네임 중복 확인 버튼
+        btn_confirmNickname.setOnClickListener {
+            mDatabaseRef = FirebaseDatabase.getInstance().getReference("ShareMo").child("UserAccount")
+            mDatabaseRef.orderByChild("user_nickname").equalTo("${edt_nickname.text.toString()}")
+                    .addListenerForSingleValueEvent(object : ValueEventListener{
+                        override fun onCancelled(error: DatabaseError) {
+
+                        }
+                        override fun onDataChange(snapshot: DataSnapshot) {
+                            var value = snapshot.getValue()
+                            if(edt_nickname.text.toString().equals("")){
+                                Toast.makeText(this@RegisterActivity,"닉네임을 입력하세요",Toast.LENGTH_SHORT).show()
+                            }else if(value != null){
+                                Toast.makeText(this@RegisterActivity,"이미 등록되어 있는 닉네임입니다",Toast.LENGTH_SHORT).show()
+                            }else{
+                                //가입 가능한 닉네임이면 닉네임 입력 창 비활성화 및 가입하기 버튼 활성화
+                                Toast.makeText(this@RegisterActivity,"사용 가능한 닉네임입니다",Toast.LENGTH_SHORT).show()
+                                edt_nickname.isEnabled = false
+                                btn_register.isEnabled = true
+                            }
+                        }
+                    })
+        }
+
+        //재설정 버튼 클릭 시 다시 처음 세팅으로 초기화
+        btn_reset.setOnClickListener {
+
+            edt_email.setText("")
+            edt_pwd.setText("")
+            edt_name.setText("")
+            edt_phone.setText("")
+            edt_nickname.setText("")
+
+            edt_email.isEnabled = true
+            edt_pwd.isEnabled = false
+            edt_name.isEnabled = false
+            edt_phone.isEnabled = false
+            edt_nickname.isEnabled = false
+            btn_register.isEnabled = false
+        }
 
         btn_back.setOnClickListener {
             onBackPressed()
         }
 
-
-
+        //회원가입 처리 시작
         btn_register.setOnClickListener {
-            //회원가입 처리 시작
+
             var user_email : String = edt_email.text.toString()
+            var user_nickname : String = edt_nickname.text.toString()
             var user_pwd : String = edt_pwd.text.toString()
             var user_name : String = edt_name.text.toString()
             var user_phone : String = edt_phone.text.toString()
-            var user_nickname : String = edt_nickname.text.toString()
-            val dong : String = spinnerDong!!.getSelectedItem().toString()
 
-            val binding = ActivityMainBinding.inflate(layoutInflater)
-            //setContentView(binding.root)
-
-
-            if(user_email.equals("") || user_pwd.equals("") || user_name.equals("") || user_phone.equals("") || user_nickname.equals("")){
+            //모든 항목을 작성해야 회원가입 가능하게 함
+            if(user_name.equals("") || user_pwd.equals("") || user_phone.equals("") || user_nickname.equals("")){
                 Toast.makeText(this, "가입 정보를 모두 입력하세요", Toast.LENGTH_SHORT).show()
             }else{
-
-                //firebaseauth 진행
+                //파이어베이스에 유저를 등록하고, 리얼타임 데이터베이스에 사용자 정보들을 setValue로 넣어줌
                 mFirebaseAuth!!.createUserWithEmailAndPassword(user_email, user_pwd)?.addOnCompleteListener(this){
                     if(it.isSuccessful){
                         val mFirebaseUser : FirebaseUser? = mFirebaseAuth?.currentUser
@@ -101,7 +172,8 @@ class RegisterActivity : AppCompatActivity() {
                         hashMap.put("user_phone", user_phone)
                         hashMap.put("user_nickname", user_nickname)
                         hashMap.put("user_email", user_email)
-                        hashMap.put("user_dong", dong)
+                        hashMap.put("user_profileImage","")
+                        hashMap.put("user_dong", spinnerDong!!.selectedItem.toString())
 
 
                         mDatabaseRef.setValue(hashMap).addOnCompleteListener {
@@ -117,7 +189,7 @@ class RegisterActivity : AppCompatActivity() {
                         Toast.makeText(this, "$user_name 님, 가입을 축하합니다", Toast.LENGTH_SHORT).show()
                         finish()
                     }else{
-                        Toast.makeText(this, "이미 등록된 아이디이거나\n 비밀번호가 6자 이상이 아닙니다", Toast.LENGTH_SHORT).show()
+                        Toast.makeText(this, "비밀번호가 6자 이상이 아닙니다", Toast.LENGTH_SHORT).show()
                     }
                 }
             }
@@ -125,7 +197,7 @@ class RegisterActivity : AppCompatActivity() {
 
     }
 
-
+    //스피너 설정
     private fun initAddressSpinner() {
         spinnerCity!!.onItemSelectedListener =  object : AdapterView.OnItemSelectedListener{
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {

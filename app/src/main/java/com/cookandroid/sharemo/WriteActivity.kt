@@ -1,8 +1,8 @@
 package com.cookandroid.sharemo
 
 import android.Manifest
+import android.app.Activity
 import android.content.Intent
-import android.content.pm.PackageManager
 import android.database.Cursor
 import android.net.Uri
 import android.os.Bundle
@@ -16,10 +16,8 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat
 import androidx.loader.content.CursorLoader
 import com.bumptech.glide.Glide
-import com.bumptech.glide.request.RequestOptions
 import com.google.android.gms.tasks.Continuation
 import com.google.android.gms.tasks.Task
 import com.google.firebase.auth.FirebaseAuth
@@ -36,25 +34,28 @@ import kotlin.collections.HashMap
 /*글쓰기 화면*/
 class WriteActivity : AppCompatActivity() {
 
-    lateinit var btn_close: Button
+    //위젯 연결할 변수 선언
+    lateinit var btn_close: ImageView
     lateinit var btn_upload: Button
     lateinit var btn_imgUpload: Button
 
     lateinit var iv_contentImage: ImageView
-
-    var imgUrl : String = ""
 
     lateinit var edt_content: EditText
     lateinit var edt_price: EditText
     lateinit var edt_website: EditText
 
     private var select_spinner: Spinner? = null
+
+
+    var imgUrl : String = ""
+
     private var arrayAdapter: ArrayAdapter<String>? = null
 
+    //파이어베이스
     private var mFirebaseAuth: FirebaseAuth? = null //파이어베이스 인증
     private lateinit var mDatabaseRef: DatabaseReference //실시간 데이터베이스
     private lateinit var fbStorage: FirebaseStorage
-    private lateinit var storageRef: StorageReference
     private var GALLEY_CODE : Int = 10
 
     var timestamp: String = SimpleDateFormat("yyyyMMdd_HHmmss").format(Date())
@@ -98,6 +99,7 @@ class WriteActivity : AppCompatActivity() {
         }
 
         btn_imgUpload.setOnClickListener {
+
             //앨범 열기
             var intent = Intent(Intent.ACTION_PICK)
             intent.setType(MediaStore.Images.Media.CONTENT_TYPE)
@@ -112,6 +114,7 @@ class WriteActivity : AppCompatActivity() {
             onBackPressed()
         }
 
+        //현재 유저의 닉네임과 동을 데이터베이스에서 가져옴
         mDatabaseRef.child("UserAccount").child("${mFirebaseAuth!!.currentUser!!.uid}")
                 .addListenerForSingleValueEvent(object : ValueEventListener {
                     override fun onDataChange(snapshot: DataSnapshot) {
@@ -128,26 +131,62 @@ class WriteActivity : AppCompatActivity() {
                     }
                 })
 
-
-
+        //글 게시하기
         btn_upload.setOnClickListener {
-            try {
-                var storageReference : StorageReference = fbStorage.getReference()
 
-                var file : Uri = Uri.fromFile(File(imgUrl))
-                var riversRef : StorageReference = storageReference.child("images/"+file.lastPathSegment)
-                var uploadTask : UploadTask = riversRef.putFile(file)
+            //내용 값은 필수
+            if(edt_content.text.isEmpty()){
+                Toast.makeText(this, "내용을 입력하세요", Toast.LENGTH_SHORT).show()
+            }else{
+                try { //사진을 포함하여 올릴 경우
+                    var storageReference : StorageReference = fbStorage.getReference()
 
-                var urlTask : Task<Uri> = uploadTask.continueWithTask(Continuation {
-                    if(!it.isSuccessful){
-                        it.exception
-                    }
-                    riversRef.downloadUrl
-                }).addOnCompleteListener {
-                    if(it.isSuccessful)
-                    {
-                        var downloadUrl : Uri? = it.result
+                    var file : Uri = Uri.fromFile(File(imgUrl))
+                    var riversRef : StorageReference = storageReference.child("images/"+file.lastPathSegment)
+                    var uploadTask : UploadTask = riversRef.putFile(file)
 
+                    var urlTask : Task<Uri> = uploadTask.continueWithTask(Continuation {
+                        if(!it.isSuccessful){
+                            it.exception
+                        }
+                        riversRef.downloadUrl
+                    }).addOnCompleteListener {
+                        if(it.isSuccessful)
+                        {
+                            var downloadUrl : Uri? = it.result
+
+                            val hashMap : HashMap<String, String> = HashMap()
+
+                            var str_content: String = edt_content.text.toString()
+                            var str_price = edt_price.text.toString()
+                            var str_website: String = edt_website.text.toString()
+                            var selectedItem: String = select_spinner!!.getSelectedItem().toString()
+
+                            hashMap.put("imgUrl", downloadUrl.toString())
+                            hashMap.put("uid", mFirebaseAuth!!.currentUser!!.uid)
+                            hashMap.put("content", str_content)
+                            hashMap.put("nickname", nickname)
+                            hashMap.put("price", str_price)
+                            hashMap.put("dong", dong)
+                            hashMap.put("website", str_website)
+                            hashMap.put("item", selectedItem)
+                            hashMap.put("timstamp", timestamp)
+
+                            mDatabaseRef.ref.child("PostData").child("${selectedItem}").push().setValue(hashMap)
+                                    .addOnCompleteListener {
+                                        if(it.isSuccessful){
+                                            Toast.makeText(this, "업로드", Toast.LENGTH_SHORT).show()
+                                        }
+                                    }
+
+                            Toast.makeText(this, "등록완료", Toast.LENGTH_SHORT).show()
+                            var intent = Intent(this, PostListActivity::class.java)
+                            intent.putExtra("SELECTED_ITEM", selectedItem)
+                            startActivity(intent)
+                            finish()
+                        }
+                    }.addOnFailureListener {
+                        //사진을 포함하지 않고 올릴 경우
                         val hashMap : HashMap<String, String> = HashMap()
 
                         var str_content: String = edt_content.text.toString()
@@ -155,7 +194,6 @@ class WriteActivity : AppCompatActivity() {
                         var str_website: String = edt_website.text.toString()
                         var selectedItem: String = select_spinner!!.getSelectedItem().toString()
 
-                        hashMap.put("imgUrl", downloadUrl.toString())
                         hashMap.put("uid", mFirebaseAuth!!.currentUser!!.uid)
                         hashMap.put("content", str_content)
                         hashMap.put("nickname", nickname)
@@ -166,127 +204,34 @@ class WriteActivity : AppCompatActivity() {
                         hashMap.put("timstamp", timestamp)
 
                         mDatabaseRef.ref.child("PostData").child("${selectedItem}").push().setValue(hashMap)
-                                .addOnCompleteListener {
-                                    if(it.isSuccessful){
-                                        Toast.makeText(this, "업로드", Toast.LENGTH_SHORT).show()
-                                    }
-                                }
 
                         Toast.makeText(this, "등록완료", Toast.LENGTH_SHORT).show()
-                        var intent = Intent(this, ShareListActivity::class.java)
+                        var intent = Intent(this, PostListActivity::class.java)
                         intent.putExtra("SELECTED_ITEM", selectedItem)
                         startActivity(intent)
                         finish()
+
                     }
-                }.addOnFailureListener {
-
-                    val hashMap : HashMap<String, String> = HashMap()
-
-                    var str_content: String = edt_content.text.toString()
-                    var str_price = edt_price.text.toString()
-                    var str_website: String = edt_website.text.toString()
-                    var selectedItem: String = select_spinner!!.getSelectedItem().toString()
-
-                    hashMap.put("uid", mFirebaseAuth!!.currentUser!!.uid)
-                    hashMap.put("content", str_content)
-                    hashMap.put("nickname", nickname)
-                    hashMap.put("price", str_price)
-                    hashMap.put("dong", dong)
-                    hashMap.put("website", str_website)
-                    hashMap.put("item", selectedItem)
-                    hashMap.put("timstamp", timestamp)
-
-                    mDatabaseRef.ref.child("PostData").child("${selectedItem}").push().setValue(hashMap)
-
-                    Toast.makeText(this, "등록완료", Toast.LENGTH_SHORT).show()
-                    var intent = Intent(this, ShareListActivity::class.java)
-                    intent.putExtra("SELECTED_ITEM", selectedItem)
-                    startActivity(intent)
-                    finish()
-
+                }catch (e : NullPointerException){
                 }
-            }catch (e : NullPointerException){
-                Toast.makeText(this, "이미지 선택 안함", Toast.LENGTH_SHORT).show();
             }
+
         }
 
-
-
-
-
-
-
-
-
-        /*btn_upload.setOnClickListener {
-            try {
-                var storageReference : StorageReference = fbStorage.getReference()
-
-                var file : Uri = Uri.fromFile(File(imgUrl))
-                var riversRef : StorageReference = storageReference.child("images/"+file.lastPathSegment)
-                var uploadTask : UploadTask = riversRef.putFile(file)
-
-                var urlTask : Task<Uri> = uploadTask.continueWithTask(Continuation {
-                    if(!it.isSuccessful){
-                        it.exception
-                    }
-                    riversRef.downloadUrl
-                }).addOnCompleteListener {
-                    if(it.isSuccessful)
-                    {
-                        var downloadUrl : Uri? = it.result
-                        val hashMap : HashMap<String, String> = HashMap()
-
-                        var str_content: String = edt_content.text.toString()
-                        var str_price = edt_price.text.toString()
-                        var str_website: String = edt_website.text.toString()
-                        var selectedItem: String = select_spinner!!.getSelectedItem().toString()
-
-                        hashMap.put("imgUrl", downloadUrl.toString())
-                        hashMap.put("uid", mFirebaseAuth!!.currentUser!!.uid)
-                        hashMap.put("content", str_content)
-                        hashMap.put("nickname", nickname)
-                        hashMap.put("price", str_price)
-                        hashMap.put("dong", dong)
-                        hashMap.put("website", str_website)
-                        hashMap.put("item", selectedItem)
-                        hashMap.put("timstamp", timestamp)
-
-                        mDatabaseRef.ref.child("PostData").child("${selectedItem}").push().setValue(hashMap)
-                                .addOnCompleteListener {
-                                    if(it.isSuccessful){
-                                        Toast.makeText(this, "업로드 완료", Toast.LENGTH_SHORT).show()
-                                    }
-                                }
-
-                        Toast.makeText(this, "등록완료", Toast.LENGTH_SHORT).show()
-                        var intent = Intent(this, ShareListActivity::class.java)
-                        intent.putExtra("SELECTED_ITEM", selectedItem)
-                        startActivity(intent)
-                        finish()
-                    }
-                }.addOnFailureListener {
-
-                }
-            }catch (e : NullPointerException){
-                Toast.makeText(this, "이미지 선택 X", Toast.LENGTH_SHORT).show();
-            }
-        }*/
     }
-
 
     //이미지 받아와서 화면에 출력
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 
         if (requestCode == GALLEY_CODE) {
-            imgUrl = getRealPathFromUri(data!!.data)
-            var cropOptions : RequestOptions = RequestOptions()
-            Glide.with(applicationContext)
-                    .load(imgUrl)
-                    .into(iv_contentImage)
-
-            super.onActivityResult(requestCode, resultCode, data)
+            if(resultCode == Activity.RESULT_OK){
+                imgUrl = getRealPathFromUri(data!!.data)
+                Glide.with(applicationContext)
+                        .load(imgUrl)
+                        .into(iv_contentImage)
+            }
         }
+        super.onActivityResult(requestCode, resultCode, data)
     }
 
 

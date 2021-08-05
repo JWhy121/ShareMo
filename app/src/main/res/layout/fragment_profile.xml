@@ -18,7 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:layout_marginTop="50dp"
+            android:layout_marginTop="90dp"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/user"
             tools:layout_editor_absoluteX="140dp" />
