@@ -10,3 +10,4 @@
 # 시연 영상
 https://user-images.githubusercontent.com/73284904/149818670-1019daac-f49d-4900-90cf-2f91db1ece5f.mp4
 
+https://www.youtube.com/watch?v=qwIps7Q6vwo
