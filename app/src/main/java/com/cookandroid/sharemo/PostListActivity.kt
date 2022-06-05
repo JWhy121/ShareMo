@@ -27,7 +27,7 @@ class PostListActivity : AppCompatActivity() {
     lateinit var adapter : RecyclerView.Adapter<PostDataAdapter.CustomViewHolder>
     lateinit var layoutManager: RecyclerView.LayoutManager
     lateinit var arrayList: ArrayList<PostData>
-    lateinit var imgBtn_eidt : ImageView
+    lateinit var plusBtn : ImageView
 
 
     //파이어베이스
@@ -48,7 +48,7 @@ class PostListActivity : AppCompatActivity() {
 
         //아이디 연결
         rv_post = findViewById(R.id.rv_Post)
-        imgBtn_eidt = findViewById(R.id.imgBtn_Edit)
+        plusBtn = findViewById(R.id.imgBtn_Edit)
         mSearchText = findViewById(R.id.edt_SearchText)
 
         rv_post.setHasFixedSize(true) //리사이클러뷰 성능 강화
@@ -92,7 +92,7 @@ class PostListActivity : AppCompatActivity() {
         rv_post.setAdapter(adapter)
 
         //글쓰기 버튼에 클릭 리스너 연결
-        imgBtn_eidt.setOnClickListener {
+        plusBtn.setOnClickListener {
             var intent = Intent(this, WriteActivity::class.java)
             startActivity(intent)
         }
